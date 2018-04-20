@@ -5,10 +5,17 @@
  */
 package com.mycompany.GUI.Evenements;
 
+import com.codename1.io.ConnectionRequest;
+import com.codename1.io.NetworkEvent;
+import com.codename1.io.NetworkManager;
+import com.codename1.ui.events.ActionListener;
+import com.mycompany.entites.Evenements.Evenements;
+import java.util.ArrayList;
+
 /**
  *
  * @author user
  */
 public class Client_Liste_Events {
-    
+
 }
