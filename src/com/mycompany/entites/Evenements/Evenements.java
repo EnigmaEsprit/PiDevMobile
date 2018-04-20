@@ -112,6 +112,11 @@ public class Evenements {
     public void setImage(String image) {
         this.image = image;
     }
+
+    @Override
+    public String toString() {
+        return "Evenements{" + "id=" + id + ", nomevenement=" + nomevenement + ", nombredeplaces=" + nombredeplaces + ", nombredeplacerestante=" + nombredeplacerestante + ", tarifevenement=" + tarifevenement + ", description=" + description + ", lieu=" + lieu + ", date=" + date + ", datefin=" + datefin + ", idUser=" + idUser + ", image=" + image + '}';
+    }
     
     
     

@@ -86,6 +86,11 @@ public class Promotions {
     public void setImage(String image) {
         this.image = image;
     }
+
+    @Override
+    public String toString() {
+        return "Promotions{" + "idpromotion=" + idpromotion + ", nompromotion=" + nompromotion + ", datedebut=" + datedebut + ", datefin=" + datefin + ", pourcentage=" + pourcentage + ", idproduits=" + idproduits + ", idUsers=" + idUsers + ", image=" + image + '}';
+    }
     
     
     
