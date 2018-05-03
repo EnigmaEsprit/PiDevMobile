@@ -6,6 +6,8 @@
 package com.mycompany.entites.Evenements;
 
 import com.mycompany.entites.Utilisateurs.Users;
+import java.util.Date;
+import rest.file.uploader.tn.FileUploader;
 
 /**
  *
@@ -19,12 +21,60 @@ public class Evenements {
     private float tarifevenement;
     private String description;
     private String lieu;
-    private String date;
-    private String datefin;
+    private Date date;
+    private Date datefin;
+    private String dateS;
+    private String datefS;
     private Users idUser;
     private String image;
+    private int valider;
+    private FileUploader file;
+
+    public Evenements() {
+    }
+
+    public Evenements(int id, String nomevenement, int nombredeplaces, int nombredeplacerestante, float tarifevenement, String description, String lieu, String dateS, String datefS, Users idUser, String image) {
+        this.id = id;
+        this.nomevenement = nomevenement;
+        this.nombredeplaces = nombredeplaces;
+        this.nombredeplacerestante = nombredeplacerestante;
+        this.tarifevenement = tarifevenement;
+        this.description = description;
+        this.lieu = lieu;
+        this.dateS = dateS;
+        this.datefS = datefS;
+        this.idUser = idUser;
+        this.image = image;
+    }
     
+    public Evenements(int id,String nomevenement, int nombredeplaces,  float tarifevenement, String description, String lieu, String dateS, String detefS, Users idUser, String image) {
+        this.id =id;
+        this.nomevenement = nomevenement;
+        this.nombredeplaces = nombredeplaces;
+       
+        this.tarifevenement = tarifevenement;
+        this.description = description;
+        this.lieu = lieu;
+        this.dateS = dateS;
+        this.datefS = detefS;
+        this.idUser = idUser;
+        this.image = image;
+    }
+
+    public Evenements(String nomevenement, int nombredeplaces,  float tarifevenement, String description, String lieu, String dateS, String detefS, Users idUser, String image) {
+        this.nomevenement = nomevenement;
+        this.nombredeplaces = nombredeplaces;
+       
+        this.tarifevenement = tarifevenement;
+        this.description = description;
+        this.lieu = lieu;
+        this.dateS = dateS;
+        this.datefS = detefS;
+        this.idUser = idUser;
+        this.image = image;
+    }
     
+
     public int getId() {
         return id;
     }
@@ -81,21 +131,23 @@ public class Evenements {
         this.lieu = lieu;
     }
 
-    public String getDate() {
+    public Date getDate() {
         return date;
     }
 
-    public void setDate(String date) {
+    public void setDate(Date date) {
         this.date = date;
     }
 
-    public String getDatefin() {
+    public Date getDatefin() {
         return datefin;
     }
 
-    public void setDatefin(String datefin) {
+    public void setDatefin(Date datefin) {
         this.datefin = datefin;
     }
+
+  
 
     public Users getIdUser() {
         return idUser;
@@ -103,6 +155,14 @@ public class Evenements {
 
     public void setIdUser(Users idUser) {
         this.idUser = idUser;
+    }
+
+    public FileUploader getFile() {
+        return file;
+    }
+
+    public void setFile(FileUploader file) {
+        this.file = file;
     }
 
     public String getImage() {
@@ -113,9 +173,40 @@ public class Evenements {
         this.image = image;
     }
 
+    public String getDateS() {
+        return dateS;
+    }
+
+    public void setDateS(String dateS) {
+        this.dateS = dateS;
+    }
+
+    public String getDatefS() {
+        return datefS;
+    }
+
+    public void setDatefS(String datefS) {
+        this.datefS = datefS;
+    }
+
+    public int getValider() {
+        return valider;
+    }
+
+    public void setValider(int valider) {
+        this.valider = valider;
+    }
+
+
+
+   
+
+  
+    
+
     @Override
     public String toString() {
-        return "Evenements{" + "id=" + id + ", nomevenement=" + nomevenement + ", nombredeplaces=" + nombredeplaces + ", nombredeplacerestante=" + nombredeplacerestante + ", tarifevenement=" + tarifevenement + ", description=" + description + ", lieu=" + lieu + ", date=" + date + ", datefin=" + datefin + ", idUser=" + idUser + ", image=" + image + '}';
+        return "Evenements{" + "id=" + id + ", nomevenement=" + nomevenement + ", nombredeplaces=" + nombredeplaces + ", nombredeplacerestante=" + nombredeplacerestante + ", tarifevenement=" + tarifevenement + ", description=" + description + ", lieu=" + lieu + ", date=" + date + ", datefin=" + datefin + ", idUser=" + idUser + ", image=" + image+ '}';
     }
     
     

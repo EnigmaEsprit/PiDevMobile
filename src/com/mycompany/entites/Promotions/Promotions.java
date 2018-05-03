@@ -22,6 +22,43 @@ public class Promotions {
     private Produits idproduits;
     private Users idUsers;
     private String image;
+    private String dateS;
+    private String datefS;
+
+    public Promotions() {
+    }
+
+    public Promotions(int idpromotion, String nompromotion, String dateS, String datefS, int pourcentage, Produits idproduits, Users idUsers, String image) {
+        this.idpromotion = idpromotion;
+        this.nompromotion = nompromotion;
+        this.dateS = dateS;
+        this.datefS = datefS;
+        this.pourcentage = pourcentage;
+        this.idproduits = idproduits;
+        this.idUsers = idUsers;
+        this.image = image;
+    }
+
+    public Promotions(int idpromotion, String nompromotion, int pourcentage, Produits idproduits, Users idUsers, String image, String dateS, String datefS) {
+        this.idpromotion = idpromotion;
+        this.nompromotion = nompromotion;
+        this.pourcentage = pourcentage;
+        this.idproduits = idproduits;
+        this.idUsers = idUsers;
+        this.image = image;
+        this.dateS = dateS;
+        this.datefS = datefS;
+    }
+
+    public Promotions(String nompromotion, String dateS, String datefS, int pourcentage, Produits idproduits, Users idUsers, String image) {
+        this.nompromotion = nompromotion;
+        this.dateS = dateS;
+        this.datefS = datefS;
+        this.pourcentage = pourcentage;
+        this.idproduits = idproduits;
+        this.idUsers = idUsers;
+        this.image = image;
+    }
 
     public int getIdpromotion() {
         return idpromotion;
@@ -87,10 +124,34 @@ public class Promotions {
         this.image = image;
     }
 
+    public String getDateS() {
+        return dateS;
+    }
+
+    public void setDateS(String dateS) {
+        this.dateS = dateS;
+    }
+
+    public String getDatefS() {
+        return datefS;
+    }
+
+    public void setDatefS(String datefS) {
+        this.datefS = datefS;
+    }
+    
+
+    /*@Override
+    public String toString() {
+    return "Promotions{" + "idpromotion=" + idpromotion + ", nompromotion=" + nompromotion + ", datedebut=" + datedebut + ", datefin=" + datefin + ", pourcentage=" + pourcentage + ", idproduits=" + idproduits + ", idUsers=" + idUsers + ", image=" + image + '}';
+    }
+    */
+
     @Override
     public String toString() {
-        return "Promotions{" + "idpromotion=" + idpromotion + ", nompromotion=" + nompromotion + ", datedebut=" + datedebut + ", datefin=" + datefin + ", pourcentage=" + pourcentage + ", idproduits=" + idproduits + ", idUsers=" + idUsers + ", image=" + image + '}';
+        return "Promotions{" + "idpromotion=" + idpromotion + ", nompromotion=" + nompromotion + ", datedebut=" + datedebut + ", datefin=" + datefin + ", pourcentage=" + pourcentage + ", idproduits=" + idproduits + ", idUsers=" + idUsers + ", image=" + image + ", dateS=" + dateS + ", datefS=" + datefS + '}';
     }
+
     
     
     

@@ -18,24 +18,43 @@ public class Produits {
     private String nomProduit;
     private int quantiteProduit;
     private double prixProduit;
-    private ImageView imageProduit;
-    private Button bouton;
-    private TextField quantiteTextField;
-    private double prixTotal;
- 
-    private int quantiteProduitClient;
+    private String imageProduit;
+    private float newprix;
+    private int validateur;
+
+    public Produits() {
+    }
+
+    public String getImageProduit() {
+        return imageProduit;
+    }
+
+    public void setImageProduit(String imageProduit) {
+        this.imageProduit = imageProduit;
+    }
+
+    public float getNewprix() {
+        return newprix;
+    }
+
+    public void setNewprix(float newprix) {
+        this.newprix = newprix;
+    }
+
+    public int getValidateur() {
+        return validateur;
+    }
+
+    public void setValidateur(int validateur) {
+        this.validateur = validateur;
+    }
+    
+    
     
      
      
    
 
-    public ImageView getImageProduit() {
-        return imageProduit;
-    }
-
-    public void setImageProduit(ImageView image) {
-        this.imageProduit = image;
-    }
     
     
 
@@ -71,20 +90,9 @@ public class Produits {
         this.prixProduit = prixProduit;
     }
 
-    public Button getBouton() {
-        return bouton;
-    }
-
-    public void setBouton(Button bouton) {
-        this.bouton = bouton;
-    }
-
-    public TextField getQuantiteTextField() {
-        return quantiteTextField;
-    }
-
-    public void setQuantiteTextField(TextField quantiteTextField) {
-        this.quantiteTextField = quantiteTextField;
+    @Override
+    public String toString() {
+        return  nomProduit;
     }
 
     
