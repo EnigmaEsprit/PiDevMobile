@@ -7,16 +7,10 @@ package com.mycompany.GUI.Promotions;
 
 import com.codename1.capture.Capture;
 import com.codename1.components.ImageViewer;
-import com.codename1.components.SpanLabel;
+import com.codename1.components.InfiniteProgress;
 import com.codename1.io.ConnectionRequest;
-import com.codename1.io.JSONParser;
-import com.codename1.io.Log;
-import com.codename1.io.NetworkManager;
 import com.codename1.l10n.SimpleDateFormat;
-import com.codename1.processing.Result;
-import com.codename1.ui.AutoCompleteTextField;
 import com.codename1.ui.Button;
-import com.codename1.ui.Calendar;
 import com.codename1.ui.ComboBox;
 import com.codename1.ui.Component;
 import com.codename1.ui.Container;
@@ -32,31 +26,24 @@ import com.codename1.ui.Toolbar;
 import com.codename1.ui.events.ActionEvent;
 import com.codename1.ui.events.ActionListener;
 import com.codename1.ui.events.DataChangedListener;
-import com.codename1.ui.events.SelectionListener;
 import com.codename1.ui.layouts.BoxLayout;
 import com.codename1.ui.layouts.FlowLayout;
 import com.codename1.ui.layouts.TextModeLayout;
 import com.codename1.ui.list.DefaultListModel;
 import com.codename1.ui.spinner.Picker;
 import com.codename1.ui.table.Table;
+import com.mycompany.GUI.Decouverte.Contact;
 import com.mycompany.GUI.Evenements.Affichage;
 import com.mycompany.GUI.Evenements.Vendeur_Liste_Events;
-import com.mycompany.GUI.Utilisateurs.LogIn;
-import com.mycompany.entites.Evenements.Evenements;
 import com.mycompany.entites.Produits.Produits;
 import com.mycompany.entites.Promotions.Promotions;
-import com.mycompany.entites.Utilisateurs.Users;
-import com.mycompany.myapp.MyApplication;
-import com.mycompany.service.Evenements.ServiceEvenements;
+import com.mycompany.myapp.HomePage;
 import com.mycompany.service.Promotions.ServicePrommotion;
 import com.mycompany.service.Utilisateurs.Util;
-import java.io.ByteArrayInputStream;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.Map;
 import rest.file.uploader.tn.FileUploader;
 
 /**
@@ -101,13 +88,16 @@ public class Vendeur_Promotions {
       
         TextModeLayout tl = new TextModeLayout(3, 2);
         fv = new Form("Ajout",tl);
-        
-          Toolbar tb = fv.getToolbar();
+                 fv.getStyle().setBgColor(0xE6E6E6);
+
+         InfiniteProgress ip = new InfiniteProgress();
+              Dialog d = ip.showInifiniteBlocking();
+                   Toolbar tb = fv.getToolbar();
                    tb.addMaterialCommandToSideMenu("Home",FontImage.MATERIAL_HOME,new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
-                MyApplication m = new MyApplication();
-               m.getHome().show();
+                HomePage h = new HomePage();
+       h.getHome().show();
             }
         });
              tb.addMaterialCommandToSideMenu("Evenement",FontImage.MATERIAL_EVENT,new ActionListener() {
@@ -118,6 +108,21 @@ public class Vendeur_Promotions {
                            c.Vendeur_Liste_Events();        
             }
         }); 
+              tb.addMaterialCommandToSideMenu("Promotion",FontImage.MATERIAL_MONEY_OFF,new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent evt) {
+                 Vendeur_List_Promotions h = new Vendeur_List_Promotions();
+        h.getF().show();
+            }
+        }); 
+               tb.addMaterialCommandToSideMenu("Contact",FontImage.MATERIAL_CONTACTS,new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent evt) {
+                Contact h = new Contact();
+        h.Contact();
+            }
+        });
+              
               tb = fv.getToolbar();
                    tb.addCommandToRightBar("Back", null, new ActionListener() {
                        @Override
@@ -183,9 +188,9 @@ public class Vendeur_Promotions {
        // C.add(btnaff);
 
        DD.addActionListener((evt) -> {
-            Picker d = (Picker)evt.getSource();
+            Picker d4 = (Picker)evt.getSource();
             Date dc = new Date();
-            Date d2 = d.getDate() ;
+            Date d2 = d4.getDate() ;
             if(d2.getTime()<dc.getTime())
             {
                  testDD=false;
@@ -199,10 +204,10 @@ public class Vendeur_Promotions {
         });
     
        DF.addActionListener((evt) -> {
-            Picker d = (Picker)evt.getSource();
+            Picker d4 = (Picker)evt.getSource();
             Date dc = new Date();
             Date dd2 = DD.getDate();
-            Date d2 = d.getDate() ;
+            Date d2 = d4.getDate() ;
             if(d2.getTime()<=dd2.getTime())
             {
                 testDF=false;
@@ -248,7 +253,7 @@ public class Vendeur_Promotions {
                         String news = link.substring(pod+2, link.length());
                         System.out.println(""+news);
                      
-      FileUploader fu = new FileUploader("http://localhost/pidevweb/web/uploads/");
+      FileUploader fu = new FileUploader("http://"+Util.addip+"/pidevweb/web/uploads/");
         
         //Upload
         fileNameInServer = fu.upload(news);
@@ -330,7 +335,8 @@ public class Vendeur_Promotions {
                   Date startDate2 = df.parse(news2);
                   System.out.println(startDate);*/
        
-               
+                InfiniteProgress ip8 = new InfiniteProgress();
+              Dialog d8 = ip8.showInifiniteBlocking();
                   if (testDD == true && testDF == true && testPourc == true && testProd == true &&testTitre == true && testImage == true )
                   {
                         Promotions v = new Promotions(Titre.getText(), datdebu, datfin,Integer.valueOf(pourcentage.getText()),selectedProduits,Util.connectedUser,fileNameInServer);
@@ -338,7 +344,13 @@ public class Vendeur_Promotions {
                   
                   Vendeur_List_Promotions cl = new Vendeur_List_Promotions();
                   cl.getF().show();
+                  d8.dispose();
                   }
+                   else
+                 {
+                     d8.dispose();
+                     System.out.println("FAILED");
+                 }
                  
                
              // } catch (ParseException ex) {
@@ -351,14 +363,15 @@ public class Vendeur_Promotions {
         a.getF().show();
         });
         fv.add(C);
+        d.dispose();
           fv.getToolbar().addCommandToOverflowMenu("LogOut", null, new ActionListener() {
                                 @Override
                                 public void actionPerformed(ActionEvent evt) {
                                     
                                     
-                                    LogIn l = new LogIn();
-                                    Util.connectedUser=null;
-                                    l.getConnection().show();
+                                     HomePage h = new HomePage();
+                                     Util.connectedUser=null;
+                                    h.getHome().show();
                                 }
                             });
         

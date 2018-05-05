@@ -7,20 +7,16 @@ package com.mycompany.GUI.Evenements;
 
 import com.codename1.capture.Capture;
 import com.codename1.components.ImageViewer;
+import com.codename1.components.InfiniteProgress;
 import com.codename1.components.SpanLabel;
 import com.codename1.io.ConnectionRequest;
-import com.codename1.io.File;
 import com.codename1.io.JSONParser;
 import com.codename1.io.Log;
 import com.codename1.io.NetworkManager;
-import static com.codename1.io.rest.Rest.options;
-import com.codename1.l10n.DateFormat;
-import com.codename1.l10n.ParseException;
 import com.codename1.l10n.SimpleDateFormat;
 import com.codename1.processing.Result;
 import com.codename1.ui.AutoCompleteTextField;
 import com.codename1.ui.Button;
-import com.codename1.ui.Calendar;
 import com.codename1.ui.Component;
 import com.codename1.ui.Container;
 import com.codename1.ui.Dialog;
@@ -29,23 +25,22 @@ import com.codename1.ui.EncodedImage;
 import com.codename1.ui.FontImage;
 import com.codename1.ui.Form;
 import com.codename1.ui.Image;
-import com.codename1.ui.PickerComponent;
 import com.codename1.ui.TextArea;
 import com.codename1.ui.TextField;
 import com.codename1.ui.Toolbar;
 import com.codename1.ui.events.ActionEvent;
 import com.codename1.ui.events.ActionListener;
 import com.codename1.ui.events.DataChangedListener;
-import com.codename1.ui.layouts.BorderLayout;
 import com.codename1.ui.layouts.BoxLayout;
 import com.codename1.ui.layouts.FlowLayout;
 import com.codename1.ui.layouts.TextModeLayout;
 import com.codename1.ui.list.DefaultListModel;
 import com.codename1.ui.spinner.Picker;
 import com.codename1.ui.table.Table;
-import com.mycompany.GUI.Utilisateurs.LogIn;
+import com.mycompany.GUI.Decouverte.Contact;
+import com.mycompany.GUI.Promotions.Vendeur_List_Promotions;
 import com.mycompany.entites.Evenements.Evenements;
-import com.mycompany.myapp.MyApplication;
+import com.mycompany.myapp.HomePage;
 import com.mycompany.service.Evenements.ServiceEvenements;
 import com.mycompany.service.Utilisateurs.Util;
 import java.io.ByteArrayInputStream;
@@ -56,7 +51,6 @@ import java.util.Map;
 
 
 
-import javafx.scene.control.DatePicker;
 import rest.file.uploader.tn.FileUploader;
 
 /**
@@ -120,6 +114,10 @@ public class Vendeur_Evenet {
       
         TextModeLayout tl = new TextModeLayout(3, 2);
         fv = new Form("Ajout",tl);
+                 fv.getStyle().setBgColor(0xE6E6E6);
+                  InfiniteProgress ip8 = new InfiniteProgress();
+              Dialog d8 = ip8.showInifiniteBlocking();
+
         if(MAPS_KEY == null) {
     fv.add(new SpanLabel("This demo requires a valid google API key to be set in the constant apiKey, "
             + "you can get this key for the webservice (not the native key) by following the instructions here: "
@@ -132,8 +130,8 @@ public class Vendeur_Evenet {
                    tb.addMaterialCommandToSideMenu("Home",FontImage.MATERIAL_HOME,new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
-                MyApplication m = new MyApplication();
-               m.getHome().show();
+                HomePage h = new HomePage();
+       h.getHome().show();
             }
         });
              tb.addMaterialCommandToSideMenu("Evenement",FontImage.MATERIAL_EVENT,new ActionListener() {
@@ -144,6 +142,20 @@ public class Vendeur_Evenet {
                            c.Vendeur_Liste_Events();        
             }
         }); 
+              tb.addMaterialCommandToSideMenu("Promotion",FontImage.MATERIAL_MONEY_OFF,new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent evt) {
+                 Vendeur_List_Promotions h = new Vendeur_List_Promotions();
+        h.getF().show();
+            }
+        }); 
+               tb.addMaterialCommandToSideMenu("Contact",FontImage.MATERIAL_CONTACTS,new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent evt) {
+                Contact h = new Contact();
+        h.Contact();
+            }
+        });
               tb = fv.getToolbar();
                    tb.addCommandToRightBar("Back", null, new ActionListener() {
                        @Override
@@ -304,7 +316,7 @@ public class Vendeur_Evenet {
                         String news = link.substring(pod+2, link.length());
                         System.out.println(""+news);
                      
-      FileUploader fu = new FileUploader("http://localhost/pidevweb/web/uploads/");
+      FileUploader fu = new FileUploader("http://"+Util.addip+"/pidevweb/web/uploads/");
         
         //Upload
         fileNameInServer = fu.upload(news);
@@ -321,6 +333,7 @@ public class Vendeur_Evenet {
         
         btnajout.addActionListener((e) -> {
        
+                                        
                   ServiceEvenements ser = new ServiceEvenements();
                   System.out.println(imgPath);
                   System.out.println("-----------"+DD.getDate());
@@ -384,6 +397,9 @@ public class Vendeur_Evenet {
 
                     
                 }
+                                     InfiniteProgress ip = new InfiniteProgress();
+              Dialog d = ip.showInifiniteBlocking();
+                                    
              //  System.out.println(date);
                  /* DateFormat df = new SimpleDateFormat("MM/dd/yyyy");
                   Date startDate = df.parse(news);
@@ -397,9 +413,18 @@ public class Vendeur_Evenet {
 
                   Evenements v = new Evenements(NomEv.getText(),Integer.valueOf(NBP.getText()), Float.valueOf(Tarif.getText()), popupBody.getText(), ac.getText(), datdebu, datfin,Util.connectedUser,fileNameInServer);
                   ser.newEvent(v);
+                   
                   Vendeur_Liste_Events cl = new Vendeur_Liste_Events();
+                    d.dispose();
                   cl.Vendeur_Liste_Events();
+                 
                    }
+                 else
+                 {
+                     d.dispose();
+                     System.out.println("FAILED");
+                 }
+                 
                
         });
         
@@ -408,14 +433,14 @@ public class Vendeur_Evenet {
         a.getF().show();
         });
         fv.add(C);
+        d8.dispose();
           fv.getToolbar().addCommandToOverflowMenu("LogOut", null, new ActionListener() {
                                 @Override
                                 public void actionPerformed(ActionEvent evt) {
                                     
-                                    
-                                    LogIn l = new LogIn();
-                                    Util.connectedUser=null;
-                                    l.getConnection().show();
+                                      HomePage h = new HomePage();
+                                     Util.connectedUser=null;
+                                    h.getHome().show();
                                 }
                             });
         

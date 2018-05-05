@@ -45,7 +45,7 @@ public class ServiceUsers {
                 String prenom = obj.get("prenom").toString();
                 String email = obj.get("email").toString();
                 String password = obj.get("password").toString();
-            
+       
               
 
                 
@@ -103,6 +103,7 @@ if (roles.equalsIgnoreCase("[ROLE_VENDEUR, ROLE_USER]")){System.out.println("aaa
                 e.setEmail(email);
                 e.setRoles(roles);
                 e.setPassword(password);
+        
                
                 
                
@@ -123,7 +124,7 @@ if (roles.equalsIgnoreCase("[ROLE_VENDEUR, ROLE_USER]")){System.out.println("aaa
         ArrayList<Users> listUsers = new ArrayList<>();
         public ArrayList<Users> getList2(){       
         ConnectionRequest con = new ConnectionRequest();
-        con.setUrl("http://localhost/pidevmobile/web/app_dev.php/Users/all");  
+        con.setUrl("http://"+Util.addip+"/pidevmobile/web/app_dev.php/Users/all");  
         con.addResponseListener(new ActionListener<NetworkEvent>() {
             @Override
             public void actionPerformed(NetworkEvent evt) {

@@ -6,17 +6,12 @@
 package com.mycompany.GUI.Decouverte;
 
 import com.codename1.components.ImageViewer;
+import com.codename1.components.InfiniteProgress;
 import com.codename1.googlemaps.MapContainer;
 import com.codename1.io.ConnectionRequest;
 import com.codename1.io.JSONParser;
-import com.codename1.io.Log;
 import com.codename1.io.NetworkManager;
-import com.codename1.io.Preferences;
-import com.codename1.l10n.ParseException;
-import com.codename1.l10n.SimpleDateFormat;
 import com.codename1.maps.Coord;
-import com.codename1.processing.Result;
-import com.codename1.ui.AutoCompleteTextField;
 import com.codename1.ui.ComboBox;
 import com.codename1.ui.Component;
 import com.codename1.ui.Container;
@@ -29,31 +24,31 @@ import com.codename1.ui.Form;
 import com.codename1.ui.Image;
 import com.codename1.ui.Label;
 import com.codename1.ui.Slider;
+import com.codename1.ui.Toolbar;
 import com.codename1.ui.URLImage;
-import com.codename1.ui.animations.ComponentAnimation;
 import com.codename1.ui.events.ActionEvent;
 import com.codename1.ui.events.ActionListener;
 import com.codename1.ui.events.SelectionListener;
-import com.codename1.ui.geom.Dimension;
 import com.codename1.ui.layouts.BorderLayout;
 import com.codename1.ui.layouts.BoxLayout;
 import com.codename1.ui.layouts.FlowLayout;
-import com.codename1.ui.layouts.GridLayout;
 import com.codename1.ui.layouts.LayeredLayout;
-import com.codename1.ui.list.DefaultListModel;
 import com.codename1.ui.plaf.Style;
-import com.mycompany.GUI.Evenements.detail;
-import static com.mycompany.GUI.Evenements.detail.getCoords;
+import com.codename1.ui.plaf.UIManager;
+import com.codename1.ui.util.Resources;
+import com.mycompany.GUI.Evenements.Client_Liste_Events;
+import com.mycompany.GUI.Promotions.Client_List_Promotions;
+import com.mycompany.GUI.Utilisateurs.LogIn;
 import com.mycompany.entites.Decouverte.ContactDecouverte;
-import com.mycompany.entites.Produits.Produits;
+import com.mycompany.myapp.HomePage;
 
 import com.mycompany.service.Decouverte.ServiceContact;
+import com.mycompany.service.Utilisateurs.Util;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
-import java.util.List;
 import java.util.Map;
 
 /**
@@ -65,19 +60,27 @@ public class Contact {
         Container cnt;
          ComboBox<String> cp;
            Container C4 ;
-            Form f = new Form( BoxLayout.y());
+            Form f = new Form( "Contact",BoxLayout.y());
+            
              private EncodedImage enc;
+              private Resources theme = UIManager.initFirstTheme("/theme");
              
              
       private static final String HTML_API_KEY = "AIzaSyDcwHdDoI65jU6iHlOGv54Efo67fE_AWw0";
 
              
-        private Label createForFont(Font fnt, String s) {
-        Label l = new Label(s);
-        l.getUnselectedStyle().setFont(fnt);
-
-        return l;
-        }
+        private Label createForFont(Font fnt, String s,String img) {
+            Label l = new Label(s,theme.getImage(img).fill(40, 40));
+            l.getUnselectedStyle().setFont(fnt);
+            
+            return l;
+          }
+ private Label createForFont2(Font fnt, String s) {
+            Label l = new Label(s);
+            l.getUnselectedStyle().setFont(fnt);
+            
+            return l;
+          }
 
     public Contact() {
     }
@@ -104,6 +107,10 @@ public static Coord getCoords(String address) {
     }
 public  void Map()
 {
+    InfiniteProgress ip = new InfiniteProgress();
+              Dialog d = ip.showInifiniteBlocking();
+               f.getStyle().setBgColor(0xE6E6E6);
+
      cp = new ComboBox<>();
    cp.addItem("--Ville--");
    cp.addItem("Grand Tunis");
@@ -410,20 +417,84 @@ public  void Map()
    });
               
                 f.add(LayeredLayout.encloseIn(cn, BorderLayout.north(cp)));
+                d.dispose();
                 }
     
 
 public void Contact()
 {
+  
      
   
+                     f.getStyle().setBgColor(0xE6E6E6);
+
+      Toolbar tb = f.getToolbar();
+                   tb.addMaterialCommandToSideMenu("Home",FontImage.MATERIAL_HOME,new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent evt) {
+                 HomePage h = new HomePage();
+       h.getHome().show();
+            }
+        });
           
-    
+             tb.addMaterialCommandToSideMenu("Evenement",FontImage.MATERIAL_EVENT,new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent evt) {
+                 Client_Liste_Events h = new Client_Liste_Events();
+        h.getF().show();
+            }
+        }); 
+                tb.addMaterialCommandToSideMenu("Promotion",FontImage.MATERIAL_MONEY_OFF,new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent evt) {
+                 Client_List_Promotions h = new Client_List_Promotions();
+        h.getF().show();
+            }
+        });
+                if(Util.connectedUser == null)
+                {
+                                   tb.addMaterialCommandToSideMenu("LogIn",FontImage.MATERIAL_LOCK,new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent evt) {
+                LogIn log = new LogIn();
+                log.getConnection().show();
+            }
+        });
+    }
+                else
+                {
+                       f.getToolbar().addCommandToOverflowMenu("LogOut", null, new ActionListener() {
+                                @Override
+                                public void actionPerformed(ActionEvent evt) {
+                                    
+                                    
+                                     HomePage h = new HomePage();
+                                     Util.connectedUser=null;
+                                    h.getHome().show();
+                                }
+                            });
+                }
+                tb.addMaterialCommandToSideMenu("Contact",FontImage.MATERIAL_CONTACTS,new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent evt) {
+                Contact h = new Contact();
+        h.Contact();
+            }
+        });
+                    tb.addCommandToRightBar("Back", null, new ActionListener() {
+                       @Override
+                       public void actionPerformed(ActionEvent evt) {
+                          HomePage h = new HomePage();
+       h.getHome().show();     }
+                   });
+                         
      
        MapContainer cn = new MapContainer();
        Map();
-     
+     InfiniteProgress ip2 = new InfiniteProgress();
+              Dialog d2 = ip2.showInifiniteBlocking();
         f.getToolbar().addSearchCommand(e -> {
+            
            
             String tc = (String)e.getSource();
             
@@ -455,7 +526,7 @@ public void Contact()
             
             
             Container C1 = new Container(new BoxLayout(BoxLayout.X_AXIS));
-            Image i =(URLImage.createToStorage(enc,t.getImagemag(), "http://localhost/pidevweb/web/uploads/Images/"+t.getImagemag()+"", URLImage.RESIZE_SCALE));
+            Image i =(URLImage.createToStorage(enc,t.getImagemag(), "http://"+Util.addip+"/pidevweb/web/uploads/Images/"+t.getImagemag()+"", URLImage.RESIZE_SCALE));
             
             
             ImageViewer img2 = new ImageViewer(i.fill(250,300));
@@ -466,17 +537,18 @@ public void Contact()
             Container C3 = new Container(new BoxLayout(BoxLayout.Y_AXIS));
             C4=new Container(new FlowLayout(Component.CENTER));
             
-            Label l = new Label(t.getNom_magazin().toLowerCase());
+            Label l = new Label(t.getNom_magazin().toUpperCase());
             l.getAllStyles().setFgColor(0xff0000);
             
             Label DDF = new Label();
             
             
             Font smallPlainSystemFont = Font.createSystemFont(Font.FACE_SYSTEM, Font.STYLE_PLAIN, Font.SIZE_SMALL);
-            C3.add(createForFont(smallPlainSystemFont,"Vendeur: "+t.getNom()+" "+t.getPrenom()));
-            C3.add(createForFont(smallPlainSystemFont, "E-mail: "+t.getEmail()));
-            C3.add(createForFont(smallPlainSystemFont, " Addresse: "+t.getAdresse()));
-            C3.add(createForFont(smallPlainSystemFont, " Ville: "+t.getVille()+"   "+" Zip:"+t.getZip()+" N°Tel: "+t.getNt()));
+            C3.add(createForFont(smallPlainSystemFont,t.getNom()+" "+t.getPrenom(),"man.png"));
+            C3.add(createForFont(smallPlainSystemFont, t.getEmail(),"gmail.png"));
+            C3.add(createForFont(smallPlainSystemFont, t.getAdresse(),"placeholder (1).png"));
+            C3.add(createForFont2(smallPlainSystemFont, " Ville: "+t.getVille()+"   "+" Zip:"+t.getZip()));
+             C3.add(createForFont(smallPlainSystemFont, t.getNt(),"shopping-online.png"));
             
             
             // C3.add(jSlider);
@@ -510,14 +582,16 @@ public void Contact()
         }
            else
            {
+               
            f.removeAll();
-          
+        
            Map();
 
            }
+      
                 f.show();
         },3 );
-      
+      d2.dispose();
         f.show();
         
 }

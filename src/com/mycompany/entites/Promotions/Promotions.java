@@ -28,6 +28,18 @@ public class Promotions {
     public Promotions() {
     }
 
+    public Promotions(String nompromotion, Date datedebut, Date datefin, int pourcentage, Produits idproduits, Users idUsers, String image) {
+        this.nompromotion = nompromotion;
+        this.datedebut = datedebut;
+        this.datefin = datefin;
+        this.pourcentage = pourcentage;
+        this.idproduits = idproduits;
+        this.idUsers = idUsers;
+        this.image = image;
+    }
+
+   
+
     public Promotions(int idpromotion, String nompromotion, String dateS, String datefS, int pourcentage, Produits idproduits, Users idUsers, String image) {
         this.idpromotion = idpromotion;
         this.nompromotion = nompromotion;

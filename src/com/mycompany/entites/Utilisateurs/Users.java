@@ -27,6 +27,7 @@ public class Users {
     private String img;
     private String username;
     private String roles;
+    private String salt;
 
     public Users(int id, String nom, String prenom, Date date_naissance, String sexe, String adresse, String ville, int zip, String numerodutelephone, String email, String password, String img, String username, String roles) {
         this.id = id;
@@ -168,6 +169,14 @@ public class Users {
 
     public void setRoles(String roles) {
         this.roles = roles;
+    }
+
+    public String getSalt() {
+        return salt;
+    }
+
+    public void setSalt(String salt) {
+        this.salt = salt;
     }
     
     

@@ -96,7 +96,8 @@ public class MyApplication {
     public SplashScreen() throws IOException{
         
           this.getStyle().setBgColor(0xE6E6E6);
-    this.setBgImage( theme.getImage("e23fc54d7e3d96acebbb9c736fe92ef25efa93f7_Luminaire Goutte orientle 1 2 3 4  (8) 3.jpg"));
+          this.getStyle().setBgImage(theme.getImage("e23fc54d7e3d96acebbb9c736fe92ef25efa93f7_Luminaire Goutte orientle 1 2 3 4  (8) 3.jpg"));
+  //  this.setBgImage( theme.getImage("e23fc54d7e3d96acebbb9c736fe92ef25efa93f7_Luminaire Goutte orientle 1 2 3 4  (8) 3.jpg"));
     } 
     }
     private void showSplashAnimation() throws IOException {
@@ -231,10 +232,12 @@ public class MyApplication {
                 h.getF().show();*/
        /* Vendeur_Evenet ve = new Vendeur_Evenet();
         ve.getFv().show();*/
-          Client_List_Promotions p = new Client_List_Promotions();
-       p.getF().show();
+       /*   Client_List_Promotions p = new Client_List_Promotions();
+       p.getF().show();*/
        /*Contact co = new Contact();
        co.Contact();*/
+       HomePage h = new HomePage();
+       h.getHome().show();
             }
         }, 
         2000 

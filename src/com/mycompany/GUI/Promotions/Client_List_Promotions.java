@@ -6,11 +6,13 @@
 package com.mycompany.GUI.Promotions;
 
 import com.codename1.components.ImageViewer;
-import com.codename1.l10n.ParseException;
+import com.codename1.components.InfiniteProgress;
+import com.codename1.components.SpanLabel;
 import com.codename1.l10n.SimpleDateFormat;
 import com.codename1.ui.Button;
 import com.codename1.ui.Component;
 import com.codename1.ui.Container;
+import com.codename1.ui.Dialog;
 import com.codename1.ui.EncodedImage;
 import com.codename1.ui.Font;
 import com.codename1.ui.FontImage;
@@ -23,20 +25,17 @@ import com.codename1.ui.Toolbar;
 import com.codename1.ui.URLImage;
 import com.codename1.ui.events.ActionEvent;
 import com.codename1.ui.events.ActionListener;
-import com.codename1.ui.geom.Dimension;
 import com.codename1.ui.layouts.BoxLayout;
 import com.codename1.ui.layouts.FlowLayout;
 import com.codename1.ui.layouts.GridLayout;
 import com.codename1.ui.plaf.Border;
 import com.codename1.ui.plaf.Style;
 import com.codename1.ui.table.Table;
+import com.mycompany.GUI.Decouverte.Contact;
 import com.mycompany.GUI.Evenements.Client_Liste_Events;
-import com.mycompany.GUI.Evenements.detail;
 import com.mycompany.GUI.Utilisateurs.LogIn;
-import com.mycompany.entites.Evenements.Evenements;
 import com.mycompany.entites.Promotions.Promotions;
-import com.mycompany.myapp.MyApplication;
-import com.mycompany.service.Evenements.ServiceEvenements;
+import com.mycompany.myapp.HomePage;
 import com.mycompany.service.Promotions.ServicePrommotion;
 import com.mycompany.service.Utilisateurs.Util;
 import java.io.IOException;
@@ -65,9 +64,25 @@ public class Client_List_Promotions {
             
             return l;
           }
-    
+    private Label createForFontR(Font fnt, String s) {
+            Label l = new Label(s);
+             l.getAllStyles().setFgColor(0xff0000);
+            l.getUnselectedStyle().setFont(fnt);
+            
+            return l;
+          }
+       private SpanLabel createForFontSL(Font fnt, String s,int align) {
+            SpanLabel l = new SpanLabel(s);
+            l.getTextAllStyles().setFont(fnt);
+          
+            l.getTextAllStyles().setAlignment(align);
+            //right = 3 center = 4 left= 1 top = 0
+            return l;
+          }
     public Client_List_Promotions()
     {
+        InfiniteProgress ip = new InfiniteProgress();
+              Dialog d = ip.showInifiniteBlocking();
         ServicePrommotion ser = new ServicePrommotion();
         Date cd = new Date();
         for(Promotions t : ser.getListPromotion())
@@ -89,12 +104,12 @@ public class Client_List_Promotions {
       
          f.getStyle().setBackgroundType(Style.BACKGROUND_IMAGE_SCALED);
          
-         Toolbar tb = f.getToolbar();
+                  Toolbar tb = f.getToolbar();
                    tb.addMaterialCommandToSideMenu("Home",FontImage.MATERIAL_HOME,new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
-                MyApplication m = new MyApplication();
-               m.getHome().show();
+                 HomePage h = new HomePage();
+       h.getHome().show();
             }
         });
           
@@ -105,14 +120,50 @@ public class Client_List_Promotions {
         h.getF().show();
             }
         }); 
-                             tb.addMaterialCommandToSideMenu("LogIn",FontImage.MATERIAL_LOCK,new ActionListener() {
+                tb.addMaterialCommandToSideMenu("Promotion",FontImage.MATERIAL_MONEY_OFF,new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent evt) {
+                 Client_List_Promotions h = new Client_List_Promotions();
+        h.getF().show();
+            }
+        });
+                if(Util.connectedUser == null)
+                {
+                                   tb.addMaterialCommandToSideMenu("LogIn",FontImage.MATERIAL_LOCK,new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
                 LogIn log = new LogIn();
                 log.getConnection().show();
             }
         });
-   
+    }
+                else
+                {
+                       f.getToolbar().addCommandToOverflowMenu("LogOut", null, new ActionListener() {
+                                @Override
+                                public void actionPerformed(ActionEvent evt) {
+                                    
+                                    
+                                     HomePage h = new HomePage();
+                                     Util.connectedUser=null;
+                                    h.getHome().show();
+                                }
+                            });
+                }
+                tb.addMaterialCommandToSideMenu("Contact",FontImage.MATERIAL_CONTACTS,new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent evt) {
+                Contact h = new Contact();
+        h.Contact();
+            }
+        });
+                 tb.addCommandToRightBar("Back", null, new ActionListener() {
+                       @Override
+                       public void actionPerformed(ActionEvent evt) {
+                          HomePage h = new HomePage();
+       h.getHome().show();     }
+                   });
+                         
         ServicePrommotion sc = new ServicePrommotion();
       
         for(Promotions t :sc.getList2())
@@ -127,7 +178,7 @@ public class Client_List_Promotions {
  
      
         Container C1 = new Container(new BoxLayout(BoxLayout.Y_AXIS));
-         Image i =(URLImage.createToStorage(enc,t.getIdproduits().getImageProduit(), "http://localhost/pidevweb/web/uploads/Images/"+t.getIdproduits().getImageProduit()+"", URLImage.RESIZE_SCALE));
+         Image i =(URLImage.createToStorage(enc,t.getIdproduits().getImageProduit(), "http://"+Util.addip+"/pidevweb/web/uploads/Images/"+t.getIdproduits().getImageProduit()+"", URLImage.RESIZE_SCALE));
          
          
             ImageViewer img2 = new ImageViewer(i.fill(400,400));
@@ -142,6 +193,7 @@ public class Client_List_Promotions {
            
 
             Container C3 = new Container(new BoxLayout(BoxLayout.Y_AXIS));
+            Container C5 = new Container(new BoxLayout(BoxLayout.X_AXIS));
              C4=new Container(new FlowLayout(Component.CENTER));
               
             Label l = new Label(t.getIdproduits().getNomProduit().toUpperCase());
@@ -157,8 +209,15 @@ public class Client_List_Promotions {
                   String datfin = formater.format(t.getDatefin());
             
             Font smallPlainSystemFont = Font.createSystemFont(Font.FACE_SYSTEM, Font.STYLE_PLAIN, Font.SIZE_SMALL);
-            C3.add(createForFont(smallPlainSystemFont,"Du"+datdebu+" au "+datfin));
-            C3.add(createForFont(smallPlainSystemFont, t.getIdproduits().getNewprix()+" TND   "+t.getIdproduits().getPrixProduit()+"TND  "));
+            C3.add(createForFontSL(smallPlainSystemFont,"Du "+datdebu+" au "+datfin,1));
+            
+              Label np =new Label(t.getIdproduits().getNewprix()+"DT");
+               np.getAllStyles().setFgColor(0x000080);
+             
+            C5.add(np);
+               C5.add(createForFontR(smallPlainSystemFont, t.getIdproduits().getPrixProduit()+"DT"));
+            
+            C3.add(C5);
             C3.add(addToCard);
            
 
@@ -184,7 +243,7 @@ public class Client_List_Promotions {
             Slider khat = new Slider();
            
            f.add(C1);
-          
+          d.dispose();
            //f.animateLayoutFadeAndWait(200, 100);
          // f.getContentPane().animateLayout(20000);
             l.addPointerPressedListener(new ActionListener() {
@@ -196,23 +255,7 @@ public class Client_List_Promotions {
            });
       
         }  
-        if(Util.connectedUser != null)
-        {
-            
       
-       
-          f.getToolbar().addCommandToOverflowMenu("LogOut", null, new ActionListener() {
-                                @Override
-                                public void actionPerformed(ActionEvent evt) {
-                                    
-                                    
-                                    LogIn l = new LogIn();
-                                     Util.connectedUser=null;
-                                    l.getConnection().show();
-                                    
-                                }
-                            });
-        }
     }
 
     public Form getF() {

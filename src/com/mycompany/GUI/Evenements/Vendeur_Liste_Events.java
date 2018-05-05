@@ -6,29 +6,17 @@
 package com.mycompany.GUI.Evenements;
 
 import com.codename1.components.ImageViewer;
-import com.codename1.components.ScaleImageButton;
-import com.codename1.components.SpanLabel;
-import com.codename1.components.ToastBar;
-import com.codename1.io.ConnectionRequest;
-import com.codename1.io.Log;
-import com.codename1.io.rest.Response;
-import com.codename1.io.rest.Rest;
+import com.codename1.components.InfiniteProgress;
 import com.codename1.l10n.SimpleDateFormat;
 import com.codename1.ui.Button;
-import static com.codename1.ui.CN.callSerially;
-import static com.codename1.ui.CN.existsInFileSystem;
-import static com.codename1.ui.CN.getAppHomePath;
-import static com.codename1.ui.CN.isTablet;
 import com.codename1.ui.Component;
-import static com.codename1.ui.Component.CENTER;
 import com.codename1.ui.Container;
-import com.codename1.ui.Display;
+import com.codename1.ui.Dialog;
 import com.codename1.ui.EncodedImage;
 import com.codename1.ui.Font;
 import com.codename1.ui.FontImage;
 import com.codename1.ui.Form;
 import com.codename1.ui.Image;
-import com.codename1.ui.InfiniteContainer;
 import com.codename1.ui.Label;
 import com.codename1.ui.Slider;
 import com.codename1.ui.TextField;
@@ -36,33 +24,20 @@ import com.codename1.ui.Toolbar;
 import com.codename1.ui.URLImage;
 import com.codename1.ui.events.ActionEvent;
 import com.codename1.ui.events.ActionListener;
-import com.codename1.ui.events.DataChangedListener;
-import com.codename1.ui.events.SelectionListener;
-import com.codename1.ui.geom.Dimension;
-import com.codename1.ui.layouts.BorderLayout;
 import com.codename1.ui.layouts.BoxLayout;
 import com.codename1.ui.layouts.FlowLayout;
-import com.codename1.ui.layouts.GridLayout;
-import com.codename1.ui.layouts.LayeredLayout;
-import com.codename1.ui.layouts.Layout;
-import com.codename1.ui.list.ListModel;
 import com.codename1.ui.plaf.Style;
 import com.codename1.ui.plaf.UIManager;
 import com.codename1.ui.table.Table;
-import com.codename1.ui.util.EventDispatcher;
 import com.codename1.ui.util.Resources;
+import com.mycompany.GUI.Decouverte.Contact;
 import com.mycompany.GUI.Promotions.Vendeur_List_Promotions;
-import com.mycompany.GUI.Promotions.Vendeur_Promotions;
-import com.mycompany.GUI.Utilisateurs.LogIn;
 import com.mycompany.entites.Evenements.Evenements;
-import com.mycompany.myapp.MyApplication;
+import com.mycompany.myapp.HomePage;
 import com.mycompany.service.Evenements.ServiceEvenements;
 import com.mycompany.service.Utilisateurs.Util;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 import java.util.Random;
 
 /**
@@ -117,37 +92,49 @@ public class Vendeur_Liste_Events  {
          
          f = new Form("Liste des Evenemeent", BoxLayout.y());
            f.getStyle().setBgColor(0xE6E6E6);
+           InfiniteProgress ip = new InfiniteProgress();
+              Dialog d = ip.showInifiniteBlocking();
          f.getStyle().setBackgroundType(Style.BACKGROUND_IMAGE_SCALED);
          
-         Toolbar tb = f.getToolbar();
+                  Toolbar tb = f.getToolbar();
                    tb.addMaterialCommandToSideMenu("Home",FontImage.MATERIAL_HOME,new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
-                MyApplication m = new MyApplication();
-               m.getHome().show();
+                HomePage h = new HomePage();
+       h.getHome().show();
             }
         });
              tb.addMaterialCommandToSideMenu("Evenement",FontImage.MATERIAL_EVENT,new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
-                 Vendeur_Liste_Events h = new Vendeur_Liste_Events();
-        h.Vendeur_Liste_Events();
+                  Container C4 = new Container(new FlowLayout(Component.CENTER));
+                           Vendeur_Liste_Events c = new Vendeur_Liste_Events();
+                           c.Vendeur_Liste_Events();        
             }
         }); 
-             tb.addMaterialCommandToSideMenu("Promotion",FontImage.MATERIAL_ADD,new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent evt) {
-                 Vendeur_Promotions h = new Vendeur_Promotions();
-        h.getFv().show();
-            }
-        }); 
-       tb.addMaterialCommandToSideMenu("List Promotion",FontImage.MATERIAL_ADD,new ActionListener() {
+              tb.addMaterialCommandToSideMenu("Promotion",FontImage.MATERIAL_MONEY_OFF,new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
                  Vendeur_List_Promotions h = new Vendeur_List_Promotions();
         h.getF().show();
             }
         }); 
+               tb.addMaterialCommandToSideMenu("Contact",FontImage.MATERIAL_CONTACTS,new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent evt) {
+                Contact h = new Contact();
+        h.Contact();
+            }
+        });
+               tb = f.getToolbar();
+                   tb.addCommandToRightBar("Back", null, new ActionListener() {
+                       @Override
+                       public void actionPerformed(ActionEvent evt) {
+                           Container C4 = new Container(new FlowLayout(Component.CENTER));
+                                    HomePage h = new HomePage();
+                                     h.getHome().show();
+                       }
+                   });
        ServiceEvenements sc = new ServiceEvenements();
       
         for(Evenements t :sc.getList3())
@@ -160,8 +147,8 @@ public class Vendeur_Liste_Events  {
  
      
         Container C1 = new Container(new BoxLayout(BoxLayout.X_AXIS));
-         Dimension d = new Dimension(20,20);
-         Image i =(URLImage.createToStorage(enc,t.getNomevenement(), "http://localhost/pidevweb/web/uploads/Images/"+t.getImage()+"", URLImage.RESIZE_SCALE));
+         
+         Image i =(URLImage.createToStorage(enc,t.getNomevenement(), "http://"+Util.addip+"/pidevweb/web/uploads/Images/"+t.getImage()+"", URLImage.RESIZE_SCALE));
          
          
             ImageViewer img2 = new ImageViewer(i.fill(300,300));
@@ -178,9 +165,9 @@ public class Vendeur_Liste_Events  {
             Container C3 = new Container(new BoxLayout(BoxLayout.Y_AXIS));
              C4=new Container(new FlowLayout(Component.CENTER));
             
-            Label l = new Label(t.getNomevenement().toUpperCase(),"TintOverlay");
-            l.getAllStyles().setFgColor(0xff0000);
-            Label tarif = new Label(t.getTarifevenement()+" TND");
+            Label l = new Label(t.getNomevenement().toUpperCase());
+            l.getAllStyles().setFgColor(0xA52A2A);
+            Label tarif = new Label(t.getTarifevenement()+" TND","bgcolor");
             //C3.add(jSlider);
             
             Label DDF = new Label();
@@ -198,7 +185,7 @@ public class Vendeur_Liste_Events  {
   
             
             C.add(l);
-            
+            C.add(new Label("       "));
             C.add(tarif);
             C2.add(C);
             C1.add(img2);
@@ -236,13 +223,15 @@ public class Vendeur_Liste_Events  {
                                 public void actionPerformed(ActionEvent evt) {
                                     
                                     
-                                    LogIn l = new LogIn();
+                                     HomePage h = new HomePage();
                                      Util.connectedUser=null;
-                                    l.getConnection().show();
+                                    h.getHome().show();
                                     
                                 }
                             });
+           d.dispose();
           f.show();
+         
     }
 
     public Form getF() {

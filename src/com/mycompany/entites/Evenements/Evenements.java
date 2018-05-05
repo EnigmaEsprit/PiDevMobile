@@ -33,6 +33,19 @@ public class Evenements {
     public Evenements() {
     }
 
+    public Evenements(String nomevenement, int nombredeplaces, int nombredeplacerestante, float tarifevenement, String description, String lieu, Date date, Date datefin, Users idUser, String image) {
+        this.nomevenement = nomevenement;
+        this.nombredeplaces = nombredeplaces;
+        this.nombredeplacerestante = nombredeplacerestante;
+        this.tarifevenement = tarifevenement;
+        this.description = description;
+        this.lieu = lieu;
+        this.date = date;
+        this.datefin = datefin;
+        this.idUser = idUser;
+        this.image = image;
+    }
+
     public Evenements(int id, String nomevenement, int nombredeplaces, int nombredeplacerestante, float tarifevenement, String description, String lieu, String dateS, String datefS, Users idUser, String image) {
         this.id = id;
         this.nomevenement = nomevenement;

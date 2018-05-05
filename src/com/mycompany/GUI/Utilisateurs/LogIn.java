@@ -6,6 +6,7 @@
 package com.mycompany.GUI.Utilisateurs;
 
 
+import com.codename1.components.InfiniteProgress;
 import com.codename1.io.ConnectionRequest;
 import com.codename1.io.Log;
 import com.codename1.io.NetworkEvent;
@@ -24,15 +25,20 @@ import com.codename1.ui.events.ActionListener;
 import com.codename1.ui.layouts.BoxLayout;
 import com.codename1.ui.layouts.FlowLayout;
 import com.codename1.ui.util.Resources;
+import com.codename1.util.StringUtil;
+import com.mycompany.GUI.Decouverte.Contact;
 import com.mycompany.GUI.Evenements.Client_Liste_Events;
 import com.mycompany.GUI.Evenements.Vendeur_Evenet;
 import com.mycompany.GUI.Evenements.Vendeur_Liste_Events;
+import com.mycompany.GUI.Promotions.Client_List_Promotions;
 import com.mycompany.entites.Evenements.Evenements;
 import com.mycompany.entites.Utilisateurs.Users;
+import com.mycompany.myapp.HomePage;
 import com.mycompany.myapp.MyApplication;
 import com.mycompany.service.Evenements.ServiceEvenements;
 import com.mycompany.service.Utilisateurs.ServiceUsers;
 import com.mycompany.service.Utilisateurs.Util;
+import org.mindrot.jbcrypt.BCrypt;
 
 
 
@@ -47,19 +53,21 @@ private Form connection = (Form) new Form("LogIn",new FlowLayout(Component.CENTE
 
     private ConnectionRequest cr;
     private String msg;
-   
+   private static int workload = 12;
+   private boolean existe=false;
     public LogIn()
     {
-         
-         Form page2Form = new Form("",new BoxLayout(BoxLayout.Y_AXIS));
-         
-           page2Form.getStyle().setBgColor(0xE6E6E6);         
+         connection.getStyle().setBgColor(0xE6E6E6);
+     
+         InfiniteProgress ip = new InfiniteProgress();
+              Dialog d = ip.showInifiniteBlocking();
+                    
          Toolbar tb = connection.getToolbar();
                    tb.addMaterialCommandToSideMenu("Home",FontImage.MATERIAL_HOME,new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
-                MyApplication m = new MyApplication();
-               m.getHome().show();
+                 HomePage h = new HomePage();
+       h.getHome().show();
             }
         });
           
@@ -70,39 +78,58 @@ private Form connection = (Form) new Form("LogIn",new FlowLayout(Component.CENTE
         h.getF().show();
             }
         }); 
-                             tb.addMaterialCommandToSideMenu("LogIn",FontImage.MATERIAL_LOCK,new ActionListener() {
+                tb.addMaterialCommandToSideMenu("Promotion",FontImage.MATERIAL_MONEY_OFF,new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent evt) {
+                 Client_List_Promotions h = new Client_List_Promotions();
+        h.getF().show();
+            }
+        });
+               
+                                   tb.addMaterialCommandToSideMenu("LogIn",FontImage.MATERIAL_LOCK,new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
                 LogIn log = new LogIn();
                 log.getConnection().show();
             }
         });
+   
+                tb.addMaterialCommandToSideMenu("Contact",FontImage.MATERIAL_CONTACTS,new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent evt) {
+                Contact h = new Contact();
+        h.Contact();
+            }
+        });
                              tb.addCommandToRightBar("Back", null, new ActionListener() {
                        @Override
                        public void actionPerformed(ActionEvent evt) {
-                           Container C4 = new Container(new FlowLayout(Component.CENTER));
-                           Client_Liste_Events c = new Client_Liste_Events();
-                           c.getF().show();                       }
+                             HomePage h = new HomePage();
+       h.getHome().show();
+                       }
                    });
          Button bt =new Button("back");
          Label lab = new Label("Bonjour!");
         Container c = new Container(new BoxLayout(BoxLayout.Y_AXIS));
         TextField id = new TextField(null,"Username");
-       // id.getHintLabel().setUIID("Username");
+  
         TextField pass = new TextField(null,"Password");
         pass.setConstraint(TextField.PASSWORD);
           
-       // pass.getHintLabel().setUIID("Password");
+
          Button conn = new Button("LogIn");
-          // cr = new ConnectionRequest(url);
-               // cr.setPost(false);
-        // conn.setPreferredW(500);
+       
         conn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
-              
+                    InfiniteProgress ip = new InfiniteProgress();
+              Dialog d = ip.showInifiniteBlocking();
+
+             
                String username =id.getText();
                 String password = pass.getText();
+                
+                
                        ServiceUsers sc = new ServiceUsers();
                 
                 System.out.println();
@@ -110,38 +137,70 @@ private Form connection = (Form) new Form("LogIn",new FlowLayout(Component.CENTE
                         {
                             System.out.println(t);
                 String data = password;
+                String pwd = StringUtil.replaceAll(t.getPassword(), "$2y", "$2a");
+                
+            
+
+                            System.out.println(t.getPassword());
+                            System.out.println(pwd);
+                            System.out.println(t.getUsername().equalsIgnoreCase(username));
+                            System.out.println(t.getRoles().equalsIgnoreCase("[ROLE_CLIENT]"));
+                           // System.out.println(BCrypt.checkpw(password, pwd));
+                            System.out.println(t.getRoles());
+                            System.out.println( t.getRoles().equalsIgnoreCase("[ROLE_VENDEUR]"));
                   
+                            System.out.println(existe+"1");
                     try {
                       
-                       if(t.getUsername().equalsIgnoreCase(username) && t.getRoles().equalsIgnoreCase("[ROLE_CLIENT, ROLE_USER]"))
+                       if(t.getUsername().equalsIgnoreCase(username) && t.getRoles().equalsIgnoreCase("[ROLE_CLIENT]")&&BCrypt.checkpw(password, pwd) == true)
                        {
                            /*Vendeur_Evenet ve = new Vendeur_Evenet();
                             ve.getFv().show(); */
-                           Client_Liste_Events h = new Client_Liste_Events();
+                           
+                           existe=true;
+                           System.out.println(existe+"2");
+                           System.out.println("SUCCESS " + password);
+                  
                             Util.connectedUser=t;
-                            h.getF().show();
+                            System.out.println(Util.connectedUser);
+
+                            
                            
                        }
-                       else if(t.getUsername().equalsIgnoreCase(username) && t.getRoles().equalsIgnoreCase("[ROLE_VENDEUR, ROLE_USER]"))
+                       else if(t.getUsername().equalsIgnoreCase(username) && t.getRoles().equalsIgnoreCase("[ROLE_VENDEUR]")&&BCrypt.checkpw(password, pwd) == true)
                        {
-                           Vendeur_Liste_Events ve = new Vendeur_Liste_Events();
-                            Util.connectedUser=t;
-                           ve.Vendeur_Liste_Events();
+                             existe=true;
+                             System.out.println(existe+"3");
+                           Util.connectedUser=t;
+                           System.out.println(Util.connectedUser);
                         
 
                            
 
                        }
-                       else
-                       {
-                           System.out.println("impossible");
-                       }
+                      
                  
     } catch (Exception ex) {
     }
 
 
                         }
+                     System.out.println(existe+"4");
+                     if(existe)
+                     {
+                          System.out.println("SUCCESS " + password);
+                           d.dispose();
+                           HomePage h = new HomePage();
+                           h.getHome().show();
+                     }
+                     else
+                     {
+                          d.dispose();
+                             Dialog.show("Stop", "FAILED"
+                                      + "", "OK", null);
+
+                             System.out.println("FAILED"+ password);
+                     }
                 
                
             }
@@ -149,7 +208,9 @@ private Form connection = (Form) new Form("LogIn",new FlowLayout(Component.CENTE
         c.add(id);
         c.add(pass);
         c.add(conn);
+       
         connection.add(c);
+        d.dispose();
         connection.show();
         
          

@@ -58,6 +58,7 @@
     <image name="Dialog.borderTopR_1.png" type="multi"  />
     <image name="e23fc54d7e3d96acebbb9c736fe92ef25efa93f7_Luminaire Goutte orientle 1 2 3 4  (8) 3.jpg"  />
     <image name="facebook.png"  />
+    <image name="gmail.png"  />
     <ui name="GUI 1" />
     <image name="hd (10).png"  />
     <image name="hd (11).png"  />
@@ -132,6 +133,7 @@
     <image name="low (8).png"  />
     <image name="low (9).png"  />
     <image name="low.png"  />
+    <image name="man.png"  />
     <image name="medium (10).png"  />
     <image name="medium (11).png"  />
     <image name="medium (12).png"  />
@@ -164,7 +166,9 @@
     <image name="Menu.borderTopL_1.png" type="multi"  />
     <image name="Menu.borderTopR_1.png" type="multi"  />
     <image name="of_menu.png" type="multi"  />
+    <image name="placeholder (1).png"  />
     <image name="placeholder.png"  />
+    <image name="shopping-online.png"  />
     <image name="signal.png"  />
     <image name="sliderEmpty.png" type="multi"  />
     <image name="sliderEmptyLeft.png" type="multi"  />
@@ -814,8 +818,8 @@
         <val key="TextHint.fgColor" value="999999" />
         <font key="TextHint.font" type="ttf" face="0" style="0" size="0" name="native:ItalicThin" family="native:ItalicThin" sizeSettings="3" actualSize="3.0" />
         <val key="TintOverlay.align" value="4" />
-        <val key="TintOverlay.bgColor" value="ffffff" />
-        <val key="TintOverlay.fgColor" value="0" />
+        <val key="TintOverlay.bgColor" value="0" />
+        <val key="TintOverlay.fgColor" value="ffffff" />
         <font key="TintOverlay.font" type="system" face="0" style="0" size="0" />
         <val key="TintOverlay.transparency" value="140" />
         <val key="Title.align" value="4" />
@@ -860,6 +864,9 @@
         <val key="ToastBarMessage.fgColor" value="ffffff" />
         <font key="ToastBarMessage.font" type="ttf" face="0" style="0" size="0" name="native:MainThin" family="native:MainThin" sizeSettings="3" actualSize="3.0" />
         <val key="bgColor" value="ffffff" />
+        <val key="bgcolor.bgColor" value="D2691E" />
+        <val key="bgcolor.fgColor" value="000000" />
+        <val key="bgcolor.transparency" value="140" />
         <border key="border" type="empty" />
         <val key="fgColor" value="0" />
         <font key="font" type="ttf" face="0" style="0" size="0" name="native:MainRegular" family="native:MainRegular" sizeSettings="3" actualSize="3.0" />

@@ -6,6 +6,7 @@
 package com.mycompany.GUI.Evenements;
 
 import com.codename1.components.ImageViewer;
+import com.codename1.components.InfiniteProgress;
 import com.codename1.components.SpanLabel;
 import com.codename1.l10n.SimpleDateFormat;
 import com.codename1.ui.Button;
@@ -29,9 +30,12 @@ import com.codename1.ui.layouts.FlowLayout;
 import com.codename1.ui.plaf.UIManager;
 import com.codename1.ui.table.Table;
 import com.codename1.ui.util.Resources;
+import com.mycompany.GUI.Decouverte.Contact;
+import com.mycompany.GUI.Promotions.Vendeur_List_Promotions;
 import com.mycompany.GUI.Utilisateurs.LogIn;
 import com.mycompany.entites.Evenements.Evenements;
 import com.mycompany.entites.Participations.Participations;
+import com.mycompany.myapp.HomePage;
 import com.mycompany.myapp.MyApplication;
 import com.mycompany.service.Evenements.ServiceEvenements;
 import com.mycompany.service.Participations.ServiceParticipations;
@@ -60,6 +64,7 @@ public class detailVendeur {
      Button update;
      Container C4 ;
       Font smallPlainSystemFont = Font.createSystemFont(Font.FACE_SYSTEM, Font.STYLE_PLAIN, Font.SIZE_SMALL);
+        Font mediumPlainMonospaceFont = Font.createSystemFont(Font.FACE_SYSTEM, Font.STYLE_PLAIN, Font.SIZE_MEDIUM);
 
     public detailVendeur() {
     }
@@ -71,6 +76,14 @@ public class detailVendeur {
             Label l = new Label(s,theme.getImage(img).fill(40, 40));
             l.getUnselectedStyle().setFont(fnt);
             
+            return l;
+          }
+       private SpanLabel createForFontSL(Font fnt, String s,int align) {
+            SpanLabel l = new SpanLabel(s);
+            l.getTextAllStyles().setFont(fnt);
+           
+            l.getTextAllStyles().setAlignment(align);
+            //right = 3 center = 4 left= 1 top = 0
             return l;
           }
     protected String getSaltString() {
@@ -88,6 +101,7 @@ public class detailVendeur {
     
     public void detailVendeur(Evenements t)
     {
+        
          try {
                         enc = EncodedImage.create("/giphy.gif");
                     } catch (IOException ex) {
@@ -95,21 +109,39 @@ public class detailVendeur {
                     }
         f2=new Form("Detail");
           f2.getStyle().setBgColor(0xE6E6E6);
-                     Toolbar tb = f2.getToolbar();
-                                            tb.addMaterialCommandToSideMenu("Home",FontImage.MATERIAL_HOME,new ActionListener() {
-                                     @Override
-                                     public void actionPerformed(ActionEvent evt) {
-                                         MyApplication m = new MyApplication();
-                                        m.getHome().show();
-                                     }
-                                 });
-                                      tb.addMaterialCommandToSideMenu("Evenement",FontImage.MATERIAL_EVENT,new ActionListener() {
-                                     @Override
-                                     public void actionPerformed(ActionEvent evt) {
-                                     Vendeur_Liste_Events ve = new Vendeur_Liste_Events();
-                           ve.Vendeur_Liste_Events();
-                                     }
-                                 }); 
+          InfiniteProgress ip = new InfiniteProgress();
+              Dialog d = ip.showInifiniteBlocking();
+                              Toolbar tb = f2.getToolbar();
+                   tb.addMaterialCommandToSideMenu("Home",FontImage.MATERIAL_HOME,new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent evt) {
+                HomePage h = new HomePage();
+       h.getHome().show();
+            }
+        });
+             tb.addMaterialCommandToSideMenu("Evenement",FontImage.MATERIAL_EVENT,new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent evt) {
+                  Container C4 = new Container(new FlowLayout(Component.CENTER));
+                           Vendeur_Liste_Events c = new Vendeur_Liste_Events();
+                           c.Vendeur_Liste_Events();        
+            }
+        }); 
+              tb.addMaterialCommandToSideMenu("Promotion",FontImage.MATERIAL_MONEY_OFF,new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent evt) {
+                 Vendeur_List_Promotions h = new Vendeur_List_Promotions();
+        h.getF().show();
+            }
+        }); 
+               tb.addMaterialCommandToSideMenu("Contact",FontImage.MATERIAL_CONTACTS,new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent evt) {
+                Contact h = new Contact();
+        h.Contact();
+            }
+        });
+              
                                 f2.getToolbar().addCommandToOverflowMenu("Edite", null, new ActionListener() {
                                 @Override
                                 public void actionPerformed(ActionEvent evt) {
@@ -135,10 +167,9 @@ public class detailVendeur {
                                 public void actionPerformed(ActionEvent evt) {
                                     
                                     
-                                    LogIn l = new LogIn();
+                                     HomePage h = new HomePage();
                                      Util.connectedUser=null;
-                                    l.getConnection().show();
-                                   
+                                    h.getHome().show();
                                 }
                             });
                    f2.getAllStyles().setPadding(0,0,0,0);
@@ -170,8 +201,8 @@ public class detailVendeur {
                    System.out.println(getSaltString());
                    System.out.println(t+"+++++++++");
                    System.out.println(t.getNomevenement());
-                   System.out.println("http://localhost/pidevweb/web/uploads/Images/"+t.getImage()+"");
-                   C6.add(new ImageViewer(URLImage.createToStorage(enc,t.getNomevenement(), "http://localhost/pidevweb/web/uploads/Images/"+t.getImage()+"", URLImage.RESIZE_SCALE).fill(1000 , 850)));
+                   System.out.println("http://"+Util.addip+"/pidevweb/web/uploads/Images/"+t.getImage()+"");
+                   C6.add(new ImageViewer(URLImage.createToStorage(enc,t.getNomevenement(), "http://"+Util.addip+"/pidevweb/web/uploads/Images/"+t.getImage()+"", URLImage.RESIZE_SCALE).fill(1000 , 850)));
                    Label detail = new Label("DÉTAILS DU L'ÉVÈNEMENT");
                    detail.getAllStyles().setFgColor(0xff0000);
                  
@@ -190,8 +221,9 @@ public class detailVendeur {
                    C4.add(createForFont(smallPlainSystemFont, " Nombre Des Places: "+t.getNombredeplaces(),"chair.png"));
                    C4.add(createForFont(smallPlainSystemFont, " Nombre Des Places Disponible: "+t.getNombredeplacerestante(),"chair.png"));
                    C4.add(createForFont(smallPlainSystemFont, " Description: ","signal.png"));
-                   SpanLabel spd = new SpanLabel(t.getDescription());
-                   C4.add(spd);
+                    C4.add(createForFontSL(mediumPlainMonospaceFont, t.getDescription(),4));
+                    /*SpanLabel spd = new SpanLabel(t.getDescription());
+                    C4.add(spd);*/
                    if(t.getValider() == 0)
                    {
                        Label l3 = new Label("En Cour");
@@ -231,8 +263,9 @@ public class detailVendeur {
             ServiceEvenements ser = new ServiceEvenements();
            
             
-           
+            d.dispose();
            f.show();
+          
             
 
         });  
