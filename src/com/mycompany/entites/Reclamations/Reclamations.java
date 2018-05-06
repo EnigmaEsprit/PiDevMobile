@@ -5,6 +5,7 @@
  */
 package com.mycompany.entites.Reclamations;
 
+import com.mycompany.entites.Utilisateurs.Users;
 import java.util.Date;
 
 /**
@@ -18,12 +19,15 @@ public class Reclamations {
     private String contenuReclamation;
     private String nomClient;
     private String emailClient;
+    private String nomMagasin;
+    private String nomVendeur;
     private Date dateEnvoiReclamation;  
     private Date dateReponseReclamation;  
-    private int idUser;
+    private Users idUser;
     private int idMagasin;
     private int statusReclamation = 0;
     private String suiviReclamation = "En attente";
+    private String visibiliteReclamation = "Oui";
 
     public Reclamations() {
     }
@@ -92,11 +96,11 @@ public class Reclamations {
         this.dateReponseReclamation = dateReponseReclamation;
     }
 
-    public int getIdUser() {
+    public Users getIdUser() {
         return idUser;
     }
 
-    public void setIdUser(int idUser) {
+    public void setIdUser(Users idUser) {
         this.idUser = idUser;
     }
 
@@ -122,6 +126,30 @@ public class Reclamations {
 
     public void setSuiviReclamation(String suiviReclamation) {
         this.suiviReclamation = suiviReclamation;
+    }
+
+    public String getNomMagasin() {
+        return nomMagasin;
+    }
+
+    public void setNomMagasin(String nomMagasin) {
+        this.nomMagasin = nomMagasin;
+    }
+
+    public String getNomVendeur() {
+        return nomVendeur;
+    }
+
+    public void setNomVendeur(String nomVendeur) {
+        this.nomVendeur = nomVendeur;
+    }
+
+    public String getVisibiliteReclamation() {
+        return visibiliteReclamation;
+    }
+
+    public void setVisibiliteReclamation(String visibiliteReclamation) {
+        this.visibiliteReclamation = visibiliteReclamation;
     }
 
     @Override
