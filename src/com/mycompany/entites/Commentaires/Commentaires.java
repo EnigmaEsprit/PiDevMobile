@@ -71,4 +71,9 @@ public class Commentaires {
         this.idUser = idUser;
     }
 
+    @Override
+    public String toString() {
+        return "Commentaires{" + "idCommentaire=" + idCommentaire + ", contenuCommentaire=" + contenuCommentaire + ", dateAjoutCommentaire=" + dateAjoutCommentaire + ", dateModificationCommentaire=" + dateModificationCommentaire + ", idUser=" + idUser + '}';
+    }
+
 }
