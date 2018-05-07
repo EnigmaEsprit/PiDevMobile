@@ -4,14 +4,12 @@
     <image name="560 (10).png"  />
     <image name="560 (2).png"  />
     <image name="560 (3).png"  />
-    <image name="560 (4).png"  />
-    <image name="560 (5).png"  />
-    <image name="560 (6).png"  />
-    <image name="560 (7).png"  />
-    <image name="560 (8).png"  />
     <image name="560 (9).png"  />
     <image name="560.png"  />
     <image name="back-command.png" type="multi"  />
+    <image name="background.jpg"  />
+    <image name="background.jpg.png"  />
+    <image name="bg4.jpg"  />
     <image name="border.png"  />
     <image name="Button.borderBottom_2.png" type="multi"  />
     <image name="Button.borderBottomL_2.png" type="multi"  />
@@ -26,6 +24,8 @@
     <image name="cal_right_arrow.png" type="multi"  />
     <image name="calendar (1).png"  />
     <image name="calendar.png"  />
+    <image name="camera-button.png"  />
+    <image name="camera.png"  />
     <image name="chair.png"  />
     <image name="chbox1.png" type="multi"  />
     <image name="chboxv1.png" type="multi"  />
@@ -47,6 +47,8 @@
     <image name="ComboBox.sel#borderTop_1.png" type="multi"  />
     <image name="ComboBox.sel#borderTopL_1.png" type="multi"  />
     <image name="ComboBox.sel#borderTopR_1.png" type="multi"  />
+    <image name="coolest-spring-worship-backgrounds-spring-shapes-gold-green-motion-worship-mediashout-store-spring-worship-backgrounds.jpg"  />
+    <image name="deleteicon.png"  />
     <image name="Dialog.borderBottom_1.png" type="multi"  />
     <image name="Dialog.borderBottomL_1.png" type="multi"  />
     <image name="Dialog.borderBottomR_1.png" type="multi"  />
@@ -57,6 +59,7 @@
     <image name="Dialog.borderTopL_1.png" type="multi"  />
     <image name="Dialog.borderTopR_1.png" type="multi"  />
     <image name="e23fc54d7e3d96acebbb9c736fe92ef25efa93f7_Luminaire Goutte orientle 1 2 3 4  (8) 3.jpg"  />
+    <image name="editqte.png"  />
     <image name="facebook.png"  />
     <image name="gmail.png"  />
     <ui name="GUI 1" />
@@ -104,10 +107,12 @@
     <image name="high.png"  />
     <image name="icon (2).png"  />
     <image name="icon.png"  />
+    <image name="img_mouseover3.jpg"  />
     <image name="iosicon (2).png"  />
     <image name="iosicon.png"  />
     <image name="iosicon1024 (2).png"  />
     <image name="iosicon1024.png"  />
+    <image name="kindle.png"  />
     <image name="logo.png"  />
     <image name="LOGO_SOUK_Noir (2).png"  />
     <image name="LOGO_SOUK_Noir.png"  />
@@ -165,7 +170,12 @@
     <image name="Menu.borderTop_1.png" type="multi"  />
     <image name="Menu.borderTopL_1.png" type="multi"  />
     <image name="Menu.borderTopR_1.png" type="multi"  />
+    <image name="milky-way-2695569_960_720.jpg"  />
+    <image name="modifyqte.png"  />
     <image name="of_menu.png" type="multi"  />
+    <image name="panasonic.jpg"  />
+    <image name="paycard.png"  />
+    <image name="Payment.png"  />
     <image name="placeholder (1).png"  />
     <image name="placeholder.png"  />
     <image name="shopping-online.png"  />
@@ -884,6 +894,7 @@
     <image name="TitleArea.borderTop_3.png" type="multi"  />
     <image name="TitleArea.borderTopL_3.png" type="multi"  />
     <image name="TitleArea.borderTopR_3.png" type="multi"  />
+    <image name="user.png"  />
     <image name="veryhigh (10).png"  />
     <image name="veryhigh (11).png"  />
     <image name="veryhigh (12).png"  />
