@@ -19,8 +19,14 @@ public class Commentaires {
     private Date dateModificationCommentaire;
     private String urlUserPhoto;
     private Users idUser;
+    private int idevenement;
+    private int produit;
     
     public Commentaires() {
+    }
+
+    public Commentaires(String text) {
+        this.contenuCommentaire = text;
     }
 
     public int getIdCommentaire() {
@@ -71,9 +77,25 @@ public class Commentaires {
         this.idUser = idUser;
     }
 
+    public int getIdevenement() {
+        return idevenement;
+    }
+
+    public void setIdevenement(int idevenement) {
+        this.idevenement = idevenement;
+    }
+
+    public int getProduit() {
+        return produit;
+    }
+
+    public void setProduit(int produit) {
+        this.produit = produit;
+    }
+
     @Override
     public String toString() {
-        return "Commentaires{" + "idCommentaire=" + idCommentaire + ", contenuCommentaire=" + contenuCommentaire + ", dateAjoutCommentaire=" + dateAjoutCommentaire + ", dateModificationCommentaire=" + dateModificationCommentaire + ", idUser=" + idUser + '}';
+        return "Commentaires{" + "idCommentaire=" + idCommentaire + ", contenuCommentaire=" + contenuCommentaire + ", dateAjoutCommentaire=" + dateAjoutCommentaire + ", dateModificationCommentaire=" + dateModificationCommentaire + ", urlUserPhoto=" + urlUserPhoto + ", idUser=" + idUser + ", idevenement=" + idevenement + ", produit=" + produit + '}';
     }
 
 }

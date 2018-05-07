@@ -17,6 +17,7 @@ import com.codename1.ui.Label;
 import com.codename1.ui.Toolbar;
 import com.codename1.ui.layouts.BoxLayout;
 import com.codename1.ui.layouts.FlowLayout;
+import com.mycompany.GUI.Commentaires.PageCommentaire;
 import com.mycompany.entites.Reclamations.Reclamations;
 import com.mycompany.service.Reclamations.ServiceReclamations;
 
@@ -57,6 +58,10 @@ public class DetailsReclamationClient {
         tb.addMaterialCommandToSideMenu("Suivi des réclamations", FontImage.MATERIAL_ALARM_ON, (evt) -> {
             SuiviReclamationsClients con = new SuiviReclamationsClients();
             con.getSuiviReclamation().show();
+        });
+        tb.addMaterialCommandToSideMenu("Commentaires", FontImage.MATERIAL_COMMENT, (evt) -> {
+            PageCommentaire pagecomment = new PageCommentaire();
+            pagecomment.getPagecomment().show();
         });
         tb.addCommandToOverflowMenu("Back", null, (evt3) -> {
             g.getSuiviReclamation().show();

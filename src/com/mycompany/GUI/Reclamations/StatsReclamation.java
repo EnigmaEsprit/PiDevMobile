@@ -13,12 +13,9 @@ import com.codename1.charts.util.ColorUtil;
 import com.codename1.ui.Form;
 import com.codename1.ui.layouts.BorderLayout;
 import com.codename1.charts.views.PieChart;
-import com.codename1.ui.Container;
-import com.codename1.ui.Font;
 import com.codename1.ui.FontImage;
-import com.codename1.ui.Label;
 import com.codename1.ui.Toolbar;
-import com.codename1.ui.layouts.BoxLayout;
+import com.mycompany.GUI.Commentaires.PageCommentaire;
 import com.mycompany.entites.Reclamations.Statisques;
 import com.mycompany.service.Reclamations.ServiceReclamations;
 import java.util.ArrayList;
@@ -104,6 +101,10 @@ public Form createPieChartForm() {
         tb.addMaterialCommandToSideMenu("Consulter les statistiques", FontImage.MATERIAL_EQUALIZER, (evt3) -> {
             StatsReclamation con = new StatsReclamation();
             con.createPieChartForm().show();
+        });
+        tb.addMaterialCommandToSideMenu("Commentaires", FontImage.MATERIAL_COMMENT, (evt) -> {
+            PageCommentaire pagecomment = new PageCommentaire();
+            pagecomment.getPagecomment().show();
         });
     
 //    Container g = new Container(BoxLayout.y());

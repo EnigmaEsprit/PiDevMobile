@@ -19,6 +19,7 @@ import com.codename1.ui.TextField;
 import com.codename1.ui.Toolbar;
 import com.codename1.ui.layouts.BoxLayout;
 import com.codename1.ui.layouts.FlowLayout;
+import com.mycompany.GUI.Commentaires.PageCommentaire;
 import com.mycompany.entites.Reclamations.Reclamations;
 import com.mycompany.service.Reclamations.ServiceReclamations;
 import java.util.Date;
@@ -52,6 +53,10 @@ public class ReponseReclamation {
         tb.addMaterialCommandToSideMenu("Consulter les statistiques", FontImage.MATERIAL_EQUALIZER, (evt) -> {
             StatsReclamation str = new StatsReclamation();
             str.createPieChartForm().show();
+        });
+        tb.addMaterialCommandToSideMenu("Commentaires", FontImage.MATERIAL_COMMENT, (evt) -> {
+            PageCommentaire pagecomment = new PageCommentaire();
+            pagecomment.getPagecomment().show();
         });
         tb.addCommandToOverflowMenu("Back", null, (evt3) -> {
             DetailsReclamation det = new DetailsReclamation();
