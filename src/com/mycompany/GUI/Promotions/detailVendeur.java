@@ -38,7 +38,10 @@ import com.mycompany.GUI.Utilisateurs.LogIn;
 import com.mycompany.GUI.utilisateurs.LoginForm;
 import com.mycompany.entites.Evenements.Evenements;
 import com.mycompany.entites.Promotions.Promotions;
+<<<<<<< HEAD
 import com.mycompany.entites.Utilisateurs.User;
+=======
+>>>>>>> 05e1c67bc0642b8be995dde47f7c3067083e9511
 import com.mycompany.myapp.HomePage;
 import com.mycompany.myapp.MyApplication;
 import com.mycompany.myapp.ToolbarForm;
@@ -103,6 +106,7 @@ public class detailVendeur {
         f2=new Form("Detail");
           f2.getStyle().setBgColor(0xE6E6E6);
                              Toolbar tb = f2.getToolbar();
+<<<<<<< HEAD
                              /*        tb.addMaterialCommandToSideMenu("Home",FontImage.MATERIAL_HOME,new ActionListener() {
                              @Override
                              public void actionPerformed(ActionEvent evt) {
@@ -145,6 +149,38 @@ public class detailVendeur {
              
             tbf.Menu0(f2); 
         }
+=======
+                   tb.addMaterialCommandToSideMenu("Home",FontImage.MATERIAL_HOME,new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent evt) {
+                HomePage h = new HomePage();
+       h.getHome().show();
+            }
+        });
+             tb.addMaterialCommandToSideMenu("Evenement",FontImage.MATERIAL_EVENT,new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent evt) {
+                  Container C4 = new Container(new FlowLayout(Component.CENTER));
+                           Vendeur_Liste_Events c = new Vendeur_Liste_Events();
+                           c.Vendeur_Liste_Events();        
+            }
+        }); 
+              tb.addMaterialCommandToSideMenu("Promotion",FontImage.MATERIAL_MONEY_OFF,new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent evt) {
+                 Vendeur_List_Promotions h = new Vendeur_List_Promotions();
+        h.getF().show();
+            }
+        }); 
+               tb.addMaterialCommandToSideMenu("Contact",FontImage.MATERIAL_CONTACTS,new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent evt) {
+                Contact h = new Contact();
+        h.Contact();
+            }
+        });
+              
+>>>>>>> 05e1c67bc0642b8be995dde47f7c3067083e9511
                                 f2.getToolbar().addCommandToOverflowMenu("Edite", null, new ActionListener() {
                                 @Override
                                 public void actionPerformed(ActionEvent evt) {
@@ -170,10 +206,16 @@ public class detailVendeur {
                                 public void actionPerformed(ActionEvent evt) {
                                     
                                     
+<<<<<<< HEAD
                                       LoginForm logForm = new LoginForm();
                                       Util.connectedUser=null;
                                       User.setActifUser(null);
                                       logForm.getMain().show();
+=======
+                                    HomePage h = new HomePage();
+                                     Util.connectedUser=null;
+                                    h.getHome().show();
+>>>>>>> 05e1c67bc0642b8be995dde47f7c3067083e9511
                                    
                                 }
                             });

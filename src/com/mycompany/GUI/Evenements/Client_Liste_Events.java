@@ -8,7 +8,10 @@ package com.mycompany.GUI.Evenements;
 import com.codename1.components.ImageViewer;
 import com.codename1.components.InfiniteProgress;
 import com.codename1.components.SpanLabel;
+<<<<<<< HEAD
 import com.codename1.io.Log;
+=======
+>>>>>>> 05e1c67bc0642b8be995dde47f7c3067083e9511
 import com.codename1.l10n.ParseException;
 import com.codename1.l10n.SimpleDateFormat;
 import com.codename1.ui.Button;
@@ -28,7 +31,10 @@ import com.codename1.ui.Toolbar;
 import com.codename1.ui.URLImage;
 import com.codename1.ui.events.ActionEvent;
 import com.codename1.ui.events.ActionListener;
+<<<<<<< HEAD
 import com.codename1.ui.layouts.BorderLayout;
+=======
+>>>>>>> 05e1c67bc0642b8be995dde47f7c3067083e9511
 import com.codename1.ui.layouts.BoxLayout;
 import com.codename1.ui.layouts.FlowLayout;
 import com.codename1.ui.plaf.Style;
@@ -40,9 +46,13 @@ import com.mycompany.GUI.Promotions.Client_List_Promotions;
 import com.mycompany.GUI.Utilisateurs.LogIn;
 import com.mycompany.GUI.utilisateurs.LoginForm;
 import com.mycompany.entites.Evenements.Evenements;
+<<<<<<< HEAD
 import com.mycompany.entites.Utilisateurs.User;
 import com.mycompany.myapp.HomePage;
 import com.mycompany.myapp.ToolbarForm;
+=======
+import com.mycompany.myapp.HomePage;
+>>>>>>> 05e1c67bc0642b8be995dde47f7c3067083e9511
 import com.mycompany.service.Evenements.ServiceEvenements;
 import com.mycompany.service.Utilisateurs.Util;
 import java.io.IOException;
@@ -104,6 +114,7 @@ public class Client_Liste_Events extends Form{
          f.getStyle().setBackgroundType(Style.BACKGROUND_IMAGE_SCALED);
          
          Toolbar tb = f.getToolbar();
+<<<<<<< HEAD
          /* Image icon = theme.getImage("e23fc54d7e3d96acebbb9c736fe92ef25efa93f7_Luminaire Goutte orientle 1 2 3 4  (8) 3.jpg");
          Container topBar = BorderLayout.east(new Label(icon.fill(1100, 600)));
          topBar.getAllStyles().setMargin(0, 0, 0, 0);
@@ -187,6 +198,67 @@ public class Client_Liste_Events extends Form{
         h.getHome().show();     }
         });
         */
+=======
+                   tb.addMaterialCommandToSideMenu("Home",FontImage.MATERIAL_HOME,new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent evt) {
+                 HomePage h = new HomePage();
+       h.getHome().show();
+            }
+        });
+          
+             tb.addMaterialCommandToSideMenu("Evenement",FontImage.MATERIAL_EVENT,new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent evt) {
+                 Client_Liste_Events h = new Client_Liste_Events();
+        h.getF().show();
+            }
+        }); 
+                tb.addMaterialCommandToSideMenu("Promotion",FontImage.MATERIAL_MONEY_OFF,new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent evt) {
+                 Client_List_Promotions h = new Client_List_Promotions();
+        h.getF().show();
+            }
+        });
+                if(Util.connectedUser == null)
+                {
+                                   tb.addMaterialCommandToSideMenu("LogIn",FontImage.MATERIAL_LOCK,new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent evt) {
+                LogIn log = new LogIn();
+                log.getConnection().show();
+            }
+        });
+    }
+                else
+                {
+                       f.getToolbar().addCommandToOverflowMenu("LogOut", null, new ActionListener() {
+                                @Override
+                                public void actionPerformed(ActionEvent evt) {
+                                    
+                                    
+                                    LogIn l = new LogIn();
+                                     Util.connectedUser=null;
+                                    l.getConnection().show();
+                                }
+                            });
+                }
+                tb.addMaterialCommandToSideMenu("Contact",FontImage.MATERIAL_CONTACTS,new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent evt) {
+                Contact h = new Contact();
+        h.Contact();
+            }
+        });
+       tb.addCommandToRightBar("Back", null, new ActionListener() {
+                       @Override
+                       public void actionPerformed(ActionEvent evt) {
+                          HomePage h = new HomePage();
+       h.getHome().show();     }
+                   });
+                         
+>>>>>>> 05e1c67bc0642b8be995dde47f7c3067083e9511
        ServiceEvenements sc = new ServiceEvenements();
       
         for(Evenements t :sc.getList2())
@@ -245,7 +317,11 @@ public class Client_Liste_Events extends Form{
             C1.add(img2);
             C1.add(C2);
             C2.add(C3);
+<<<<<<< HEAD
             //C1.setLeadComponent(l);
+=======
+            C1.setLeadComponent(l);
+>>>>>>> 05e1c67bc0642b8be995dde47f7c3067083e9511
             Label fargha = new Label();
             Slider khat = new Slider();
            

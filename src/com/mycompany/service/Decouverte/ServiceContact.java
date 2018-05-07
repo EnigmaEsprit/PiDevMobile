@@ -15,7 +15,11 @@ import com.codename1.ui.Dialog;
 import com.codename1.ui.events.ActionListener;
 import com.mycompany.GUI.Decouverte.Contact;
 import com.mycompany.entites.Decouverte.ContactDecouverte;
+<<<<<<< HEAD
 import com.mycompany.entites.Utilisateurs.User;
+=======
+import com.mycompany.entites.Utilisateurs.Users;
+>>>>>>> 05e1c67bc0642b8be995dde47f7c3067083e9511
 import com.mycompany.service.Utilisateurs.Util;
 import java.io.IOException;
 import java.util.ArrayList;

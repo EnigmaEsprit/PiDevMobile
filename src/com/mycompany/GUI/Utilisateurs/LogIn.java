@@ -8,9 +8,6 @@ package com.mycompany.GUI.Utilisateurs;
 
 import com.codename1.components.InfiniteProgress;
 import com.codename1.io.ConnectionRequest;
-import com.codename1.io.Log;
-import com.codename1.io.NetworkEvent;
-import com.codename1.io.NetworkManager;
 import com.codename1.ui.Button;
 import com.codename1.ui.Component;
 import com.codename1.ui.Container;
@@ -28,6 +25,7 @@ import com.codename1.ui.util.Resources;
 import com.codename1.util.StringUtil;
 import com.mycompany.GUI.Decouverte.Contact;
 import com.mycompany.GUI.Evenements.Client_Liste_Events;
+<<<<<<< HEAD
 import com.mycompany.GUI.Evenements.Vendeur_Evenet;
 import com.mycompany.GUI.Evenements.Vendeur_Liste_Events;
 import com.mycompany.GUI.Promotions.Client_List_Promotions;
@@ -36,6 +34,11 @@ import com.mycompany.entites.Utilisateurs.User;
 import com.mycompany.myapp.HomePage;
 import com.mycompany.myapp.MyApplication;
 import com.mycompany.service.Evenements.ServiceEvenements;
+=======
+import com.mycompany.GUI.Promotions.Client_List_Promotions;
+import com.mycompany.entites.Utilisateurs.Users;
+import com.mycompany.myapp.HomePage;
+>>>>>>> 05e1c67bc0642b8be995dde47f7c3067083e9511
 import com.mycompany.service.Utilisateurs.ServiceUsers;
 import com.mycompany.service.Utilisateurs.Util;
 import org.mindrot.jbcrypt.BCrypt;

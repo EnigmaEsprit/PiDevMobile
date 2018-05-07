@@ -28,7 +28,11 @@ public class Promotions {
     public Promotions() {
     }
 
+<<<<<<< HEAD
     public Promotions(String nompromotion, Date datedebut, Date datefin, int pourcentage, Produits idproduits, User idUsers, String image) {
+=======
+    public Promotions(String nompromotion, Date datedebut, Date datefin, int pourcentage, Produits idproduits, Users idUsers, String image) {
+>>>>>>> 05e1c67bc0642b8be995dde47f7c3067083e9511
         this.nompromotion = nompromotion;
         this.datedebut = datedebut;
         this.datefin = datefin;
@@ -40,7 +44,11 @@ public class Promotions {
 
    
 
+<<<<<<< HEAD
     public Promotions(int idpromotion, String nompromotion, String dateS, String datefS, int pourcentage, Produits idproduits, User idUsers, String image) {
+=======
+    public Promotions(int idpromotion, String nompromotion, String dateS, String datefS, int pourcentage, Produits idproduits, Users idUsers, String image) {
+>>>>>>> 05e1c67bc0642b8be995dde47f7c3067083e9511
         this.idpromotion = idpromotion;
         this.nompromotion = nompromotion;
         this.dateS = dateS;

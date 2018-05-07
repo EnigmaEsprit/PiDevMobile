@@ -145,6 +145,7 @@ public class MyApplication {
         h.getF().show();*/
         /* Vendeur_Evenet ve = new Vendeur_Evenet();
         ve.getFv().show();*/
+<<<<<<< HEAD
         /*   Client_List_Promotions p = new Client_List_Promotions();
         p.getF().show();*/
         /*Contact co = new Contact();
@@ -162,6 +163,18 @@ public class MyApplication {
         vcf.getPsdTutorial().show();
         } catch (IOException ex) {
         }
+=======
+       /*   Client_List_Promotions p = new Client_List_Promotions();
+       p.getF().show();*/
+       /*Contact co = new Contact();
+       co.Contact();*/
+       HomePage h = new HomePage();
+       h.getHome().show();
+            }
+        }, 
+        2000 
+);
+>>>>>>> 05e1c67bc0642b8be995dde47f7c3067083e9511
         
     }
 },
