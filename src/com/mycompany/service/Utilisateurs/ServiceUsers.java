@@ -11,7 +11,8 @@ import com.codename1.io.JSONParser;
 import com.codename1.io.NetworkEvent;
 import com.codename1.io.NetworkManager;
 import com.codename1.ui.events.ActionListener;
-import com.mycompany.entites.Utilisateurs.Users;
+import com.mycompany.entites.Utilisateurs.User;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -23,9 +24,9 @@ import java.util.Map;
  */
 public class ServiceUsers {
        
-    public ArrayList<Users> getListTask(String json) {
+    public ArrayList<User> getListTask(String json) {
 
-        ArrayList<Users> listUsers = new ArrayList<>();
+        ArrayList<User> listUsers = new ArrayList<>();
 
         try {
             System.out.println(json);
@@ -37,7 +38,7 @@ public class ServiceUsers {
             List<Map<String, Object>> list = (List<Map<String, Object>>) evenements.get("root");
 
             for (Map<String, Object> obj : list) {
-                Users e = new Users();
+                User e = new User();
 
                 // System.out.println(obj.get("id"));
                 float id = Float.parseFloat(obj.get("id").toString());
@@ -45,7 +46,7 @@ public class ServiceUsers {
                 String prenom = obj.get("prenom").toString();
                 String email = obj.get("email").toString();
                 String password = obj.get("password").toString();
-            
+       
               
 
                 
@@ -103,6 +104,7 @@ if (roles.equalsIgnoreCase("[ROLE_VENDEUR, ROLE_USER]")){System.out.println("aaa
                 e.setEmail(email);
                 e.setRoles(roles);
                 e.setPassword(password);
+        
                
                 
                
@@ -120,10 +122,10 @@ if (roles.equalsIgnoreCase("[ROLE_VENDEUR, ROLE_USER]")){System.out.println("aaa
         return listUsers;
 
     }
-        ArrayList<Users> listUsers = new ArrayList<>();
-        public ArrayList<Users> getList2(){       
+        ArrayList<User> listUsers = new ArrayList<>();
+        public ArrayList<User> getList2(){       
         ConnectionRequest con = new ConnectionRequest();
-        con.setUrl("http://localhost/pidevmobile/web/app_dev.php/Users/all");  
+        con.setUrl("http://"+Util.addip+"/pidevmobile/web/app_dev.php/Users/all");  
         con.addResponseListener(new ActionListener<NetworkEvent>() {
             @Override
             public void actionPerformed(NetworkEvent evt) {

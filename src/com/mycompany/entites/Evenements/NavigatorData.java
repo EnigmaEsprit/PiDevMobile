@@ -5,7 +5,9 @@
  */
 package com.mycompany.entites.Evenements;
 
-import com.mycompany.entites.Utilisateurs.Users;
+import com.mycompany.entites.Utilisateurs.User;
+
+
 
 
 
@@ -17,11 +19,11 @@ public class NavigatorData {
         return instance;
     }        
           
-    private Users ConnectedUser;
+    private User ConnectedUser;
     private Evenements SelectedAnnonce;
     private String vd;
     private String date;
-    private Users selectedUser;
+    private User selectedUser;
 
     public String getDate() {
         return date;
@@ -31,11 +33,11 @@ public class NavigatorData {
         this.date = date;
     }
 
-    public Users getSelectedUser() {
+    public User getSelectedUser() {
         return selectedUser;
     }
 
-    public void setSelectedUser(Users selectedUser) {
+    public void setSelectedUser(User selectedUser) {
         this.selectedUser = selectedUser;
     }
 
@@ -49,11 +51,11 @@ public class NavigatorData {
         this.vd = vd;
     }
     
-    public void SetConnectedUser(Users CUser){
+    public void SetConnectedUser(User CUser){
         this.ConnectedUser=CUser;
     }
     
-    public Users getConnectedUser() {
+    public User getConnectedUser() {
         return ConnectedUser;
     }     
         public void SetSelectedAnnonce(Evenements annonce){

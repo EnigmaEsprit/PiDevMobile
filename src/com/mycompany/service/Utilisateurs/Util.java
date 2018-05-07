@@ -6,7 +6,8 @@
 package com.mycompany.service.Utilisateurs;
 
 import com.mycompany.entites.Evenements.Evenements;
-import com.mycompany.entites.Utilisateurs.Users;
+import com.mycompany.entites.Utilisateurs.User;
+
 
 
 
@@ -15,9 +16,9 @@ import com.mycompany.entites.Utilisateurs.Users;
  * @author user
  */
 public class Util {
-    public static Users connectedUser;
+    public static User connectedUser =User.getActifUser();
     public static Evenements event;
-    
+    public static String addip = "192.168.8.100";
      public static boolean numerique_Validation(String numerique){
        char[] s = numerique.toCharArray();
        boolean testnum = true;

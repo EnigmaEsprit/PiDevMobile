@@ -15,7 +15,8 @@ import com.codename1.l10n.ParseException;
 import com.codename1.l10n.SimpleDateFormat;
 import com.codename1.ui.events.ActionListener;
 import com.mycompany.entites.Evenements.Evenements;
-import com.mycompany.entites.Utilisateurs.Users;
+import com.mycompany.entites.Utilisateurs.User;
+//import com.mycompany.entites.Utilisateurs.Users;
 import com.mycompany.service.Utilisateurs.Util;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -29,10 +30,10 @@ import java.util.Map;
  * @author user
  */
 public class ServiceEvenements {
-    public void subEvent(Users u , Evenements ev)
+    public void subEvent(User u , Evenements ev)
     {
         ConnectionRequest con = new ConnectionRequest();
-        String Url = "http://localhost/pidevmobile/web/app_dev.php/Evenements/subsc?idevenement="+ev.getId()+"&iduser="+u.getId();
+        String Url = "http://"+Util.addip+"/pidevmobile/web/app_dev.php/Evenements/subsc?idevenement="+ev.getId()+"&iduser="+u.getId();
         con.setUrl(Url);
         System.out.println(Url);
         System.out.println("tt");
@@ -52,7 +53,7 @@ public class ServiceEvenements {
     }
     public void udpateEvent(Evenements ev) {
         ConnectionRequest con = new ConnectionRequest();
-        String Url = "http://localhost/pidevmobile/web/app_dev.php/Evenements/edit/"+ev.getId()+"?nomevenement="+ev.getNomevenement()+"&nombredeplaces="+ev.getNombredeplaces()+"&nombredeplacesrestante="+ev.getNombredeplacerestante()+"&tarif="+ev.getTarifevenement()+"&descriptionevenement="+ev.getDescription()+"&lieu="+ev.getLieu()+"&date="+ev.getDateS()+"&datefin="+ev.getDatefS()+"&file="+ev.getImage()+"&iduser="+ev.getIdUser().getId() ;
+        String Url = "http://"+Util.addip+"/pidevmobile/web/app_dev.php/Evenements/edit/"+ev.getId()+"?nomevenement="+ev.getNomevenement()+"&nombredeplaces="+ev.getNombredeplaces()+"&nombredeplacesrestante="+ev.getNombredeplacerestante()+"&tarif="+ev.getTarifevenement()+"&descriptionevenement="+ev.getDescription()+"&lieu="+ev.getLieu()+"&date="+ev.getDateS()+"&datefin="+ev.getDatefS()+"&file="+ev.getImage()+"&iduser="+ev.getIdUser().getId() ;
         con.setUrl(Url);
         System.out.println(Url);
         System.out.println("tt");
@@ -73,7 +74,7 @@ public class ServiceEvenements {
     public void newEvent(Evenements ev) {
         ConnectionRequest con = new ConnectionRequest();
         System.out.println(ev.getNomevenement());
-        String Url = "http://localhost/pidevmobile/web/app_dev.php/Evenements/new?nomevenement="+ev.getNomevenement()+"&nombredeplaces="+ev.getNombredeplaces()+"&tarif="+ev.getTarifevenement()+"&descriptionevenement="+ev.getDescription()+"&lieu="+ev.getLieu()+"&date="+ev.getDateS()+"&datefin="+ev.getDatefS()+"&file="+ev.getImage()+"&iduser="+ev.getIdUser().getId();
+        String Url = "http://"+Util.addip+"/pidevmobile/web/app_dev.php/Evenements/new?nomevenement="+ev.getNomevenement()+"&nombredeplaces="+ev.getNombredeplaces()+"&tarif="+ev.getTarifevenement()+"&descriptionevenement="+ev.getDescription()+"&lieu="+ev.getLieu()+"&date="+ev.getDateS()+"&datefin="+ev.getDatefS()+"&file="+ev.getImage()+"&iduser="+ev.getIdUser().getId();
         System.out.println(Url);
         con.setUrl(Url);
 
@@ -94,7 +95,7 @@ public class ServiceEvenements {
     }
         public void deleteEvent(int id) {
         ConnectionRequest con = new ConnectionRequest();
-        String Url = "http://localhost/pidevmobile/web/app_dev.php/Evenements/delete/"+id;
+        String Url = "http://"+Util.addip+"/pidevmobile/web/app_dev.php/Evenements/delete/"+id;
         System.out.println(Url);
         con.setUrl(Url);
 
@@ -164,7 +165,7 @@ public class ServiceEvenements {
                  }*/
                
               Map<String, Object> user  = (Map<String, Object>) obj.get("iduser");
-              Users u = new  Users();
+              User u = new  User();
                 /*System.out.println(user.get("id"));
                 System.out.println(user.get("nom"));
                                 System.out.println(user.get("email"));
@@ -225,7 +226,7 @@ public class ServiceEvenements {
         ArrayList<Evenements> listEvenementsv = new ArrayList<>();
         public ArrayList<Evenements> getList2(){       
         ConnectionRequest con = new ConnectionRequest();
-        con.setUrl("http://localhost/pidevmobile/web/app_dev.php/Evenements/all");  
+        con.setUrl("http://"+Util.addip+"/pidevmobile/web/app_dev.php/Evenements/all");  
         con.addResponseListener(new ActionListener<NetworkEvent>() {
             @Override
             public void actionPerformed(NetworkEvent evt) {
@@ -246,7 +247,7 @@ public class ServiceEvenements {
         ConnectionRequest con = new ConnectionRequest();
             System.out.println(Util.connectedUser);
             System.out.println("");
-        con.setUrl("http://localhost/pidevmobile/web/app_dev.php/Evenements/allV?iduser="+Util.connectedUser.getId());  
+        con.setUrl("http://"+Util.addip+"/pidevmobile/web/app_dev.php/Evenements/allV?iduser="+Util.connectedUser.getId());  
         con.addResponseListener(new ActionListener<NetworkEvent>() {
             @Override
             public void actionPerformed(NetworkEvent evt) {

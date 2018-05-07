@@ -6,7 +6,7 @@
 package com.mycompany.entites.Promotions;
 
 import com.mycompany.entites.Produits.Produits;
-import com.mycompany.entites.Utilisateurs.Users;
+import com.mycompany.entites.Utilisateurs.User;
 import java.util.Date;
 
 /**
@@ -20,7 +20,7 @@ public class Promotions {
     private Date datefin;
     private int pourcentage;
     private Produits idproduits;
-    private Users idUsers;
+    private User idUsers;
     private String image;
     private String dateS;
     private String datefS;
@@ -28,7 +28,19 @@ public class Promotions {
     public Promotions() {
     }
 
-    public Promotions(int idpromotion, String nompromotion, String dateS, String datefS, int pourcentage, Produits idproduits, Users idUsers, String image) {
+    public Promotions(String nompromotion, Date datedebut, Date datefin, int pourcentage, Produits idproduits, User idUsers, String image) {
+        this.nompromotion = nompromotion;
+        this.datedebut = datedebut;
+        this.datefin = datefin;
+        this.pourcentage = pourcentage;
+        this.idproduits = idproduits;
+        this.idUsers = idUsers;
+        this.image = image;
+    }
+
+   
+
+    public Promotions(int idpromotion, String nompromotion, String dateS, String datefS, int pourcentage, Produits idproduits, User idUsers, String image) {
         this.idpromotion = idpromotion;
         this.nompromotion = nompromotion;
         this.dateS = dateS;
@@ -39,7 +51,7 @@ public class Promotions {
         this.image = image;
     }
 
-    public Promotions(int idpromotion, String nompromotion, int pourcentage, Produits idproduits, Users idUsers, String image, String dateS, String datefS) {
+    public Promotions(int idpromotion, String nompromotion, int pourcentage, Produits idproduits, User idUsers, String image, String dateS, String datefS) {
         this.idpromotion = idpromotion;
         this.nompromotion = nompromotion;
         this.pourcentage = pourcentage;
@@ -50,7 +62,7 @@ public class Promotions {
         this.datefS = datefS;
     }
 
-    public Promotions(String nompromotion, String dateS, String datefS, int pourcentage, Produits idproduits, Users idUsers, String image) {
+    public Promotions(String nompromotion, String dateS, String datefS, int pourcentage, Produits idproduits, User idUsers, String image) {
         this.nompromotion = nompromotion;
         this.dateS = dateS;
         this.datefS = datefS;
@@ -108,11 +120,11 @@ public class Promotions {
         this.idproduits = idproduits;
     }
 
-    public Users getIdUsers() {
+    public User getIdUsers() {
         return idUsers;
     }
 
-    public void setIdUsers(Users idUsers) {
+    public void setIdUsers(User idUsers) {
         this.idUsers = idUsers;
     }
 

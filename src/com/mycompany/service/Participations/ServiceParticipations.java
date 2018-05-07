@@ -12,8 +12,9 @@ import com.codename1.io.NetworkEvent;
 import com.codename1.io.NetworkManager;
 import com.codename1.ui.events.ActionListener;
 import com.mycompany.entites.Participations.Participations;
-import com.mycompany.entites.Utilisateurs.Users;
+
 import com.mycompany.service.Utilisateurs.ServiceUsers;
+import com.mycompany.service.Utilisateurs.Util;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -78,7 +79,7 @@ public class ServiceParticipations {
         ArrayList<Participations> listParticipations = new ArrayList<>();
         public ArrayList<Participations> getList2(){       
         ConnectionRequest con = new ConnectionRequest();
-        con.setUrl("http://localhost/pidevmobile/web/app_dev.php/Evenements/subscAll");  
+        con.setUrl("http://"+Util.addip+"/pidevmobile/web/app_dev.php/Evenements/subscAll");  
         con.addResponseListener(new ActionListener<NetworkEvent>() {
             @Override
             public void actionPerformed(NetworkEvent evt) {

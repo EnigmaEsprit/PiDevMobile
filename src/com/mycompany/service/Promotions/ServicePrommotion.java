@@ -15,7 +15,8 @@ import com.codename1.ui.events.ActionListener;
 import com.mycompany.entites.Evenements.Evenements;
 import com.mycompany.entites.Produits.Produits;
 import com.mycompany.entites.Promotions.Promotions;
-import com.mycompany.entites.Utilisateurs.Users;
+import com.mycompany.entites.Utilisateurs.User;
+
 import com.mycompany.service.Utilisateurs.Util;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -53,7 +54,7 @@ public class ServicePrommotion {
     }*/
     public void udpatePromotion(Promotions ev) {
     ConnectionRequest con = new ConnectionRequest();
-    String Url = "http://localhost/pidevmobile/web/app_dev.php/Promotions/edit/"+ev.getIdpromotion()+"?nompromotion="+ev.getNompromotion()+"&porcentage="+ev.getPourcentage()+"&date="+ev.getDateS()+"&datefin="+ev.getDatefS()+"&file="+ev.getImage()+"&iduser="+ev.getIdUsers().getId()+"&produits="+ev.getIdproduits().getIdProduit();
+    String Url = "http://"+Util.addip+"/pidevmobile/web/app_dev.php/Promotions/edit/"+ev.getIdpromotion()+"?nompromotion="+ev.getNompromotion()+"&porcentage="+ev.getPourcentage()+"&date="+ev.getDateS()+"&datefin="+ev.getDatefS()+"&file="+ev.getImage()+"&iduser="+ev.getIdUsers().getId()+"&produits="+ev.getIdproduits().getIdProduit();
     con.setUrl(Url);
     System.out.println(Url);
     System.out.println("tt");
@@ -73,7 +74,7 @@ public class ServicePrommotion {
     }
      public void udpateValidateur(int val,int id) {
     ConnectionRequest con = new ConnectionRequest();
-    String Url = "http://localhost/pidevmobile/web/app_dev.php/Promotions/"+id+"/edit?val="+val;
+    String Url = "http://"+Util.addip+"/pidevmobile/web/app_dev.php/Promotions/"+id+"/edit?val="+val;
     con.setUrl(Url);
     System.out.println(Url);
     System.out.println("tt");
@@ -94,7 +95,7 @@ public class ServicePrommotion {
     public void newOffer(Promotions ev) {
     ConnectionRequest con = new ConnectionRequest();
     System.out.println(ev.getNompromotion());
-    String Url = "http://localhost/pidevmobile/web/app_dev.php/Promotions/new?nompromotion="+ev.getNompromotion()+"&porcentage="+ev.getPourcentage()+"&date="+ev.getDateS()+"&datefin="+ev.getDatefS()+"&file="+ev.getImage()+"&iduser="+ev.getIdUsers().getId()+"&produits="+ev.getIdproduits().getIdProduit();
+    String Url = "http://"+Util.addip+"/pidevmobile/web/app_dev.php/Promotions/new?nompromotion="+ev.getNompromotion()+"&porcentage="+ev.getPourcentage()+"&date="+ev.getDateS()+"&datefin="+ev.getDatefS()+"&file="+ev.getImage()+"&iduser="+ev.getIdUsers().getId()+"&produits="+ev.getIdproduits().getIdProduit();
     System.out.println(Url);
     con.setUrl(Url);
     
@@ -115,7 +116,7 @@ public class ServicePrommotion {
     }
     public void deletePromotion(int id) {
     ConnectionRequest con = new ConnectionRequest();
-    String Url = "http://localhost/pidevmobile/web/app_dev.php/Promotions/delete/"+id;
+    String Url = "http://"+Util.addip+"/pidevmobile/web/app_dev.php/Promotions/delete/"+id;
     System.out.println(Url);
     con.setUrl(Url);
     
@@ -183,7 +184,7 @@ public class ServicePrommotion {
 
           
               Map<String, Object> user  = (Map<String, Object>) obj.get("iduser");
-              Users u = new  Users();
+              User u = new  User();
                
                 float idu = Float.parseFloat(user.get("id").toString());
                 String nom = user.get("nom").toString();
@@ -233,7 +234,7 @@ public class ServicePrommotion {
         ArrayList<Promotions> listPromotion = new ArrayList<>();
         public ArrayList<Promotions> getList2(){       
         ConnectionRequest con = new ConnectionRequest();
-        con.setUrl("http://localhost/pidevmobile/web/app_dev.php/Promotions/all");  
+        con.setUrl("http://"+Util.addip+"/pidevmobile/web/app_dev.php/Promotions/all");  
         con.addResponseListener(new ActionListener<NetworkEvent>() {
             @Override
             public void actionPerformed(NetworkEvent evt) {
@@ -252,7 +253,7 @@ public class ServicePrommotion {
             ArrayList<Promotions> listPromotionVendeur = new ArrayList<>();
         public ArrayList<Promotions> getListPromotion(){       
         ConnectionRequest con = new ConnectionRequest();
-        con.setUrl("http://localhost/pidevmobile/web/app_dev.php/Promotions/allA");  
+        con.setUrl("http://"+Util.addip+"/pidevmobile/web/app_dev.php/Promotions/allA");  
         con.addResponseListener(new ActionListener<NetworkEvent>() {
             @Override
             public void actionPerformed(NetworkEvent evt) {
@@ -272,7 +273,7 @@ public class ServicePrommotion {
             ArrayList<Promotions> listPromotion2 = new ArrayList<>();
         public ArrayList<Promotions> getListPromotionVendeur(){       
         ConnectionRequest con = new ConnectionRequest();
-        con.setUrl("http://localhost/pidevmobile/web/app_dev.php/Promotions/allV?iduser="+Util.connectedUser.getId());  
+        con.setUrl("http://"+Util.addip+"/pidevmobile/web/app_dev.php/Promotions/allV?iduser="+Util.connectedUser.getId());  
         con.addResponseListener(new ActionListener<NetworkEvent>() {
             @Override
             public void actionPerformed(NetworkEvent evt) {
@@ -331,7 +332,7 @@ public class ServicePrommotion {
                ArrayList<Produits> listProduits = new ArrayList<>();
         public ArrayList<Produits> getListProduits(){       
         ConnectionRequest con = new ConnectionRequest();
-        con.setUrl("http://localhost/pidevmobile/web/app_dev.php/Promotions/findP/"+Util.connectedUser.getId());  
+        con.setUrl("http://"+Util.addip+"/pidevmobile/web/app_dev.php/Promotions/findP/"+Util.connectedUser.getId());  
         con.addResponseListener(new ActionListener<NetworkEvent>() {
             @Override
             public void actionPerformed(NetworkEvent evt) {

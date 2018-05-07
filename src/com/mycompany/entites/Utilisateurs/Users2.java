@@ -12,7 +12,7 @@ import java.util.Date;
  *
  * @author user
  */
-public class Users {
+public class Users2 {
     private int id;
     private String nom;
     private String prenom;
@@ -27,8 +27,9 @@ public class Users {
     private String img;
     private String username;
     private String roles;
+    private String salt;
 
-    public Users(int id, String nom, String prenom, Date date_naissance, String sexe, String adresse, String ville, int zip, String numerodutelephone, String email, String password, String img, String username, String roles) {
+    public Users2(int id, String nom, String prenom, Date date_naissance, String sexe, String adresse, String ville, int zip, String numerodutelephone, String email, String password, String img, String username, String roles) {
         this.id = id;
         this.nom = nom;
         this.prenom = prenom;
@@ -45,10 +46,10 @@ public class Users {
         this.roles = roles;
     }
 
-    public Users() {
+    public Users2() {
     }
 
-    public Users(int id, String nom, String prenom, String email, String password, String username, String roles) {
+    public Users2(int id, String nom, String prenom, String email, String password, String username, String roles) {
         this.id = id;
         this.nom = nom;
         this.prenom = prenom;
@@ -168,6 +169,14 @@ public class Users {
 
     public void setRoles(String roles) {
         this.roles = roles;
+    }
+
+    public String getSalt() {
+        return salt;
+    }
+
+    public void setSalt(String salt) {
+        this.salt = salt;
     }
     
     

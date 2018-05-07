@@ -7,6 +7,7 @@ package com.mycompany.GUI.Evenements;
 
 import com.codename1.capture.Capture;
 import com.codename1.components.ImageViewer;
+import com.codename1.components.InfiniteProgress;
 import com.codename1.components.SpanLabel;
 import com.codename1.io.ConnectionRequest;
 import com.codename1.io.JSONParser;
@@ -36,9 +37,13 @@ import com.codename1.ui.layouts.TextModeLayout;
 import com.codename1.ui.list.DefaultListModel;
 import com.codename1.ui.spinner.Picker;
 import com.codename1.ui.table.Table;
-import com.mycompany.GUI.Utilisateurs.LogIn;
+import com.mycompany.GUI.Decouverte.Contact;
+import com.mycompany.GUI.Promotions.Vendeur_List_Promotions;
+import com.mycompany.GUI.utilisateurs.LoginForm;
 import com.mycompany.entites.Evenements.Evenements;
-import com.mycompany.myapp.MyApplication;
+import com.mycompany.entites.Utilisateurs.User;
+import com.mycompany.myapp.HomePage;
+import com.mycompany.myapp.ToolbarForm;
 import com.mycompany.service.Evenements.ServiceEvenements;
 import com.mycompany.service.Utilisateurs.Util;
 import java.io.ByteArrayInputStream;
@@ -87,6 +92,7 @@ public class Vendeur_event_Edit {
         Boolean testImage = true;
         Boolean testDescriptio = true;
         Boolean testVille = true;
+        Boolean testplace = true;
  private static final String MAPS_KEY = "AIzaSyBilfVJ4HcDcQcqcbkBeuQakGeCWZaOpgI"; // Your maps key here
         String[] searchLocations(String text) {
     try {
@@ -110,9 +116,13 @@ public class Vendeur_event_Edit {
     }
             
      public void Vendeur_event_Edit(Evenements ev) {
+         InfiniteProgress ip8 = new InfiniteProgress();
+              Dialog d8 = ip8.showInifiniteBlocking();
          TextModeLayout tl = new TextModeLayout(3, 2);
 
         fv = new Form("Edit",new FlowLayout(Component.CENTER));
+                 fv.getStyle().setBgColor(0xE6E6E6);
+
         if(MAPS_KEY == null) {
     fv.add(new SpanLabel("This demo requires a valid google API key to be set in the constant apiKey, "
             + "you can get this key for the webservice (not the native key) by following the instructions here: "
@@ -121,21 +131,49 @@ public class Vendeur_event_Edit {
     fv.show();
     return;
 }
-          Toolbar tb = fv.getToolbar();
-                   tb.addMaterialCommandToSideMenu("Home",FontImage.MATERIAL_HOME,new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent evt) {
-                MyApplication m = new MyApplication();
-               m.getHome().show();
-            }
-        });
-             tb.addMaterialCommandToSideMenu("Evenement",FontImage.MATERIAL_EVENT,new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent evt) {
-                 Vendeur_Liste_Events h = new Vendeur_Liste_Events();
-        h.getF().show();
-            }
-        }); 
+                  Toolbar tb = fv.getToolbar();
+                  /* tb.addMaterialCommandToSideMenu("Home",FontImage.MATERIAL_HOME,new ActionListener() {
+                  @Override
+                  public void actionPerformed(ActionEvent evt) {
+                  HomePage h = new HomePage();
+                  h.getHome().show();
+                  }
+                  });
+                  tb.addMaterialCommandToSideMenu("Evenement",FontImage.MATERIAL_EVENT,new ActionListener() {
+                  @Override
+                  public void actionPerformed(ActionEvent evt) {
+                  Container C4 = new Container(new FlowLayout(Component.CENTER));
+                  Vendeur_Liste_Events c = new Vendeur_Liste_Events();
+                  c.Vendeur_Liste_Events();
+                  }
+                  });
+                  tb.addMaterialCommandToSideMenu("Promotion",FontImage.MATERIAL_MONEY_OFF,new ActionListener() {
+                  @Override
+                  public void actionPerformed(ActionEvent evt) {
+                  Vendeur_List_Promotions h = new Vendeur_List_Promotions();
+                  h.getF().show();
+                  }
+                  });
+                  tb.addMaterialCommandToSideMenu("Contact",FontImage.MATERIAL_CONTACTS,new ActionListener() {
+                  @Override
+                  public void actionPerformed(ActionEvent evt) {
+                  Contact h = new Contact();
+                  h.Contact();
+                  }
+                  });*/
+                                           ToolbarForm tbf = new ToolbarForm();
+        if(User.getActifUser()!= null)
+        System.out.println(User.getActifUser().getRoles().toString());
+   if(User.getActifUser() !=null && User.getActifUser().getRoles().equalsIgnoreCase("[ROLE_USER]")){
+            tbf.Menu(fv); 
+        }else if(User.getActifUser() !=null && User.getActifUser().getRoles().equalsIgnoreCase("[ROLE_VENDEUR, ROLE_USER]"))
+                {
+                    tbf.Menu2(fv);
+                }
+                else{
+             
+            tbf.Menu0(fv); 
+        }
               tb = fv.getToolbar();
                    tb.addCommandToRightBar("Back", null, new ActionListener() {
                        @Override
@@ -377,17 +415,29 @@ public class Vendeur_event_Edit {
                 }
                   if(Integer.valueOf(NBP.getText())<ev.getNombredeplaces()&& ev.getNombredeplacerestante() ==0 || res<0)
                   {
+                      testplace=false;
                         Dialog.show("Erreur", "Verifier Nombre des place", "OK", null);
-                        Client_Liste_Events cl = new Client_Liste_Events();
-                        cl.getF().show();
+                       
                   }
-                  else if (testDD == true && testDF == true && testNBR == true && testTarif == true &&testTitre == true && testImage == true && testDescriptio ==true && testVille==true )
+                         InfiniteProgress ip = new InfiniteProgress();
+              Dialog d = ip.showInifiniteBlocking();
+                  if (testDD == true && testDF == true && testNBR == true && testTarif == true &&testTitre == true && testImage == true && testDescriptio ==true && testVille==true  && testplace == true )
 
                   {
+               
                        Evenements v = new Evenements(ev.getId(),NomEv.getText(),Integer.valueOf(NBP.getText()),res ,Float.valueOf(Tarif.getText()),popupBody.getText(), ac.getText(), datdebu, datfin,Util.connectedUser,fileNameInServer);
+                        Evenements v2 = new Evenements(NomEv.getText(),Integer.valueOf(NBP.getText()),res ,Float.valueOf(Tarif.getText()),popupBody.getText(), ac.getText(), DD.getDate(), DF.getDate(),Util.connectedUser,fileNameInServer);
            ser.udpateEvent(v);
-            Client_Liste_Events cl = new Client_Liste_Events();
-            cl.getF().show();
+          
+            detailVendeur cl = new detailVendeur();
+            cl.detailVendeur(v2);
+             d.dispose();
+            
+                  }
+                  else
+                  {
+                       d.dispose();
+                     System.out.println("FAILED");
                   }
                 /*  if(datdebu== null )
                   {
@@ -408,17 +458,21 @@ public class Vendeur_event_Edit {
         a.getF().show();
         });
         fv.add(C);
+        d8.dispose();
         fv.show();
           fv.getToolbar().addCommandToOverflowMenu("LogOut", null, new ActionListener() {
                                 @Override
                                 public void actionPerformed(ActionEvent evt) {
                                     
                                     
-                                    LogIn l = new LogIn();
-                                     Util.connectedUser=null;
-                                    l.getConnection().show();
+                                  LoginForm logForm = new LoginForm();
+                                      Util.connectedUser=null;
+                                      User.setActifUser(null);
+                                      logForm.getMain().show();
+                                    
                                 }
                             });
+          
     }
 
     public Form getFv() {

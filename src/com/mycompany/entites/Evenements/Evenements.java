@@ -5,7 +5,8 @@
  */
 package com.mycompany.entites.Evenements;
 
-import com.mycompany.entites.Utilisateurs.Users;
+import com.mycompany.entites.Utilisateurs.User;
+
 import java.util.Date;
 import rest.file.uploader.tn.FileUploader;
 
@@ -25,7 +26,7 @@ public class Evenements {
     private Date datefin;
     private String dateS;
     private String datefS;
-    private Users idUser;
+    private User idUser;
     private String image;
     private int valider;
     private FileUploader file;
@@ -33,7 +34,20 @@ public class Evenements {
     public Evenements() {
     }
 
-    public Evenements(int id, String nomevenement, int nombredeplaces, int nombredeplacerestante, float tarifevenement, String description, String lieu, String dateS, String datefS, Users idUser, String image) {
+    public Evenements(String nomevenement, int nombredeplaces, int nombredeplacerestante, float tarifevenement, String description, String lieu, Date date, Date datefin, User idUser, String image) {
+        this.nomevenement = nomevenement;
+        this.nombredeplaces = nombredeplaces;
+        this.nombredeplacerestante = nombredeplacerestante;
+        this.tarifevenement = tarifevenement;
+        this.description = description;
+        this.lieu = lieu;
+        this.date = date;
+        this.datefin = datefin;
+        this.idUser = idUser;
+        this.image = image;
+    }
+
+    public Evenements(int id, String nomevenement, int nombredeplaces, int nombredeplacerestante, float tarifevenement, String description, String lieu, String dateS, String datefS, User idUser, String image) {
         this.id = id;
         this.nomevenement = nomevenement;
         this.nombredeplaces = nombredeplaces;
@@ -47,7 +61,7 @@ public class Evenements {
         this.image = image;
     }
     
-    public Evenements(int id,String nomevenement, int nombredeplaces,  float tarifevenement, String description, String lieu, String dateS, String detefS, Users idUser, String image) {
+    public Evenements(int id,String nomevenement, int nombredeplaces,  float tarifevenement, String description, String lieu, String dateS, String detefS, User idUser, String image) {
         this.id =id;
         this.nomevenement = nomevenement;
         this.nombredeplaces = nombredeplaces;
@@ -61,7 +75,7 @@ public class Evenements {
         this.image = image;
     }
 
-    public Evenements(String nomevenement, int nombredeplaces,  float tarifevenement, String description, String lieu, String dateS, String detefS, Users idUser, String image) {
+    public Evenements(String nomevenement, int nombredeplaces,  float tarifevenement, String description, String lieu, String dateS, String detefS, User idUser, String image) {
         this.nomevenement = nomevenement;
         this.nombredeplaces = nombredeplaces;
        
@@ -149,11 +163,11 @@ public class Evenements {
 
   
 
-    public Users getIdUser() {
+    public User getIdUser() {
         return idUser;
     }
 
-    public void setIdUser(Users idUser) {
+    public void setIdUser(User idUser) {
         this.idUser = idUser;
     }
 

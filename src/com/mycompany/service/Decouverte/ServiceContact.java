@@ -15,13 +15,10 @@ import com.codename1.ui.Dialog;
 import com.codename1.ui.events.ActionListener;
 import com.mycompany.GUI.Decouverte.Contact;
 import com.mycompany.entites.Decouverte.ContactDecouverte;
-import com.mycompany.entites.Produits.Produits;
-import com.mycompany.entites.Promotions.Promotions;
-import com.mycompany.entites.Utilisateurs.Users;
-import com.mycompany.service.Promotions.ServicePrommotion;
+import com.mycompany.entites.Utilisateurs.User;
+import com.mycompany.service.Utilisateurs.Util;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -58,7 +55,7 @@ public class ServiceContact {
                 String nommag = obj.get("nommagasin").toString();
                 String imagemag = obj.get("photomagasin").toString();
               Map<String, Object> user  = (Map<String, Object>) obj.get("iduser");
-              Users u = new  Users();
+              User u = new  User();
            
                 String nom = user.get("nom").toString();
                 String prenom = user.get("prenom").toString();
@@ -93,7 +90,7 @@ public class ServiceContact {
      ArrayList<ContactDecouverte> listContact = new ArrayList<>();
         public ArrayList<ContactDecouverte> getListContact( String name){       
         ConnectionRequest con = new ConnectionRequest();
-        con.setUrl("http://localhost/pidevmobile/web/app_dev.php/contact/"+name+"/search");  
+        con.setUrl("http://"+Util.addip+"/pidevmobile/web/app_dev.php/contact/"+name+"/search");  
         con.addResponseListener(new ActionListener<NetworkEvent>() {
             @Override
             public void actionPerformed(NetworkEvent evt) {

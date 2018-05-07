@@ -6,11 +6,13 @@
 package com.mycompany.GUI.Promotions;
 
 import com.codename1.components.ImageViewer;
+import com.codename1.components.InfiniteProgress;
 import com.codename1.components.ScaleImageButton;
 import com.codename1.l10n.SimpleDateFormat;
 import com.codename1.ui.Button;
 import com.codename1.ui.Component;
 import com.codename1.ui.Container;
+import com.codename1.ui.Dialog;
 import com.codename1.ui.Display;
 import com.codename1.ui.EncodedImage;
 import com.codename1.ui.Font;
@@ -29,12 +31,17 @@ import com.codename1.ui.layouts.BoxLayout;
 import com.codename1.ui.layouts.FlowLayout;
 import com.codename1.ui.layouts.LayeredLayout;
 import com.codename1.ui.table.Table;
+import com.mycompany.GUI.Decouverte.Contact;
 import com.mycompany.GUI.Evenements.Vendeur_Liste_Events;
 import com.mycompany.GUI.Evenements.Vendeur_event_Edit;
 import com.mycompany.GUI.Utilisateurs.LogIn;
+import com.mycompany.GUI.utilisateurs.LoginForm;
 import com.mycompany.entites.Evenements.Evenements;
 import com.mycompany.entites.Promotions.Promotions;
+import com.mycompany.entites.Utilisateurs.User;
+import com.mycompany.myapp.HomePage;
 import com.mycompany.myapp.MyApplication;
+import com.mycompany.myapp.ToolbarForm;
 import com.mycompany.service.Evenements.ServiceEvenements;
 import com.mycompany.service.Promotions.ServicePrommotion;
 import com.mycompany.service.Utilisateurs.Util;
@@ -86,6 +93,8 @@ public class detailVendeur {
     }
       public void detailVendeur(Promotions t)
     {
+        InfiniteProgress ip = new InfiniteProgress();
+              Dialog d = ip.showInifiniteBlocking();
       try {
                         enc = EncodedImage.create("/giphy.gif");
                     } catch (IOException ex) {
@@ -93,21 +102,49 @@ public class detailVendeur {
                     }
         f2=new Form("Detail");
           f2.getStyle().setBgColor(0xE6E6E6);
-                     Toolbar tb = f2.getToolbar();
-                                            tb.addMaterialCommandToSideMenu("Home",FontImage.MATERIAL_HOME,new ActionListener() {
-                                     @Override
-                                     public void actionPerformed(ActionEvent evt) {
-                                         MyApplication m = new MyApplication();
-                                        m.getHome().show();
-                                     }
-                                 });
-                                      tb.addMaterialCommandToSideMenu("Evenement",FontImage.MATERIAL_EVENT,new ActionListener() {
-                                     @Override
-                                     public void actionPerformed(ActionEvent evt) {
-                                     Vendeur_Liste_Events ve = new Vendeur_Liste_Events();
-                           ve.Vendeur_Liste_Events();
-                                     }
-                                 }); 
+                             Toolbar tb = f2.getToolbar();
+                             /*        tb.addMaterialCommandToSideMenu("Home",FontImage.MATERIAL_HOME,new ActionListener() {
+                             @Override
+                             public void actionPerformed(ActionEvent evt) {
+                             HomePage h = new HomePage();
+                             h.getHome().show();
+                             }
+                             });
+                             tb.addMaterialCommandToSideMenu("Evenement",FontImage.MATERIAL_EVENT,new ActionListener() {
+                             @Override
+                             public void actionPerformed(ActionEvent evt) {
+                             Container C4 = new Container(new FlowLayout(Component.CENTER));
+                             Vendeur_Liste_Events c = new Vendeur_Liste_Events();
+                             c.Vendeur_Liste_Events();
+                             }
+                             });
+                             tb.addMaterialCommandToSideMenu("Promotion",FontImage.MATERIAL_MONEY_OFF,new ActionListener() {
+                             @Override
+                             public void actionPerformed(ActionEvent evt) {
+                             Vendeur_List_Promotions h = new Vendeur_List_Promotions();
+                             h.getF().show();
+                             }
+                             });
+                             tb.addMaterialCommandToSideMenu("Contact",FontImage.MATERIAL_CONTACTS,new ActionListener() {
+                             @Override
+                             public void actionPerformed(ActionEvent evt) {
+                             Contact h = new Contact();
+                             h.Contact();
+                             }
+                             });*/
+                ToolbarForm tbf = new ToolbarForm();
+        if(User.getActifUser()!= null)
+        System.out.println(User.getActifUser().getRoles().toString());
+   if(User.getActifUser() !=null && User.getActifUser().getRoles().equalsIgnoreCase("[ROLE_USER]")){
+            tbf.Menu(f2); 
+        }else if(User.getActifUser() !=null && User.getActifUser().getRoles().equalsIgnoreCase("[ROLE_VENDEUR, ROLE_USER]"))
+                {
+                    tbf.Menu2(f2);
+                }
+                else{
+             
+            tbf.Menu0(f2); 
+        }
                                 f2.getToolbar().addCommandToOverflowMenu("Edite", null, new ActionListener() {
                                 @Override
                                 public void actionPerformed(ActionEvent evt) {
@@ -133,9 +170,10 @@ public class detailVendeur {
                                 public void actionPerformed(ActionEvent evt) {
                                     
                                     
-                                    LogIn l = new LogIn();
-                                     Util.connectedUser=null;
-                                    l.getConnection().show();
+                                      LoginForm logForm = new LoginForm();
+                                      Util.connectedUser=null;
+                                      User.setActifUser(null);
+                                      logForm.getMain().show();
                                    
                                 }
                             });
@@ -148,8 +186,8 @@ public class detailVendeur {
                        @Override
                        public void actionPerformed(ActionEvent evt) {
                            C4 = new Container(new FlowLayout(Component.CENTER));
-                           Vendeur_Liste_Events ve = new Vendeur_Liste_Events();
-                           ve.Vendeur_Liste_Events();       }
+                           Vendeur_List_Promotions ve = new Vendeur_List_Promotions();
+                           ve.getF().show();       }
                    });
                          
                   SimpleDateFormat formater = new SimpleDateFormat("dd-MM-yyyy HH:mm");
@@ -168,8 +206,8 @@ public class detailVendeur {
                    System.out.println(getSaltString());
                    System.out.println(t+"+++++++++");
                    System.out.println(t.getNompromotion());
-                   System.out.println("http://localhost/pidevweb/web/uploads/Images/"+t.getImage()+"");
-                   C6.add(new ImageViewer(URLImage.createToStorage(enc,t.getImage(), "http://localhost/pidevweb/web/uploads/Images/"+t.getImage()+"", URLImage.RESIZE_SCALE).fill(1000 , 1000)));
+                   System.out.println("http://"+Util.addip+"/pidevweb/web/uploads/Images/"+t.getImage()+"");
+                   C6.add(new ImageViewer(URLImage.createToStorage(enc,t.getImage(), "http://"+Util.addip+"/pidevweb/web/uploads/Images/"+t.getImage()+"", URLImage.RESIZE_SCALE).fill(1000 , 1000)));
                    Label detail = new Label("DÉTAILS DU PROMOTION");
                    detail.getAllStyles().setFgColor(0xff0000);
                  
@@ -182,7 +220,7 @@ public class detailVendeur {
             
                    C13.add(detail);
                     Label titleLabel = new Label(t.getIdproduits().getNomProduit(), "TintOverlay");
-                    URLImage thumbImage = URLImage.createToStorage(enc, t.getIdproduits().getImageProduit(), "http://localhost/pidevweb/web/uploads/Images/"+t.getIdproduits().getImageProduit()+"", URLImage.RESIZE_SCALE_TO_FILL);
+                    URLImage thumbImage = URLImage.createToStorage(enc, t.getIdproduits().getImageProduit(), "http://"+Util.addip+"/pidevweb/web/uploads/Images/"+t.getIdproduits().getImageProduit()+"", URLImage.RESIZE_SCALE_TO_FILL);
                     ScaleImageButton btn = new ScaleImageButton(thumbImage.fill(250, 380));
                     
                      CPRD.add(LayeredLayout.encloseIn(btn));
@@ -210,7 +248,7 @@ public class detailVendeur {
             ServiceEvenements ser = new ServiceEvenements();
            
             
-           
+           d.dispose();
            f.show();
             
 

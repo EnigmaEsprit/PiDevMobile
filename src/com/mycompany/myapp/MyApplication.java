@@ -4,7 +4,6 @@ package com.mycompany.myapp;
 import com.codename1.components.ImageViewer;
 import com.codename1.components.ScaleImageLabel;
 import static com.codename1.ui.CN.*;
-import com.codename1.ui.Display;
 import com.codename1.ui.Form;
 import com.codename1.ui.Dialog;
 import com.codename1.ui.Label;
@@ -14,16 +13,12 @@ import com.codename1.io.Log;
 import com.codename1.ui.Toolbar;
 import java.io.IOException;
 import com.codename1.ui.layouts.BoxLayout;
-import com.codename1.io.NetworkEvent;
-import com.codename1.ui.Button;
 import com.codename1.ui.Command;
 import com.codename1.ui.Component;
 import com.codename1.ui.Container;
 import com.codename1.ui.EncodedImage;
 import com.codename1.ui.FontImage;
 import com.codename1.ui.Image;
-import com.codename1.ui.TextField;
-import com.codename1.ui.URLImage;
 import com.codename1.ui.animations.CommonTransitions;
 import com.codename1.ui.events.ActionEvent;
 import com.codename1.ui.events.ActionListener;
@@ -31,14 +26,11 @@ import com.codename1.ui.layouts.BorderLayout;
 import com.codename1.ui.layouts.FlowLayout;
 import com.codename1.ui.layouts.LayeredLayout;
 import com.codename1.ui.plaf.Style;
-import com.mycompany.GUI.Decouverte.Contact;
 import com.mycompany.GUI.Evenements.Client_Liste_Events;
-import com.mycompany.GUI.Evenements.Vendeur_Evenet;
-import com.mycompany.GUI.Promotions.Client_List_Promotions;
-import com.mycompany.GUI.Utilisateurs.LogIn;
-import com.mycompany.entites.Promotions.Promotions;
-import com.mycompany.service.Promotions.ServicePrommotion;
-import java.util.Date;
+import com.mycompany.GUI.Panier.VendeurCommandesForm;
+import com.mycompany.GUI.Produits.HomeProduitsForm;
+import com.mycompany.GUI.utilisateurs.LoginForm;
+
 
 
 /**
@@ -96,95 +88,11 @@ public class MyApplication {
     public SplashScreen() throws IOException{
         
           this.getStyle().setBgColor(0xE6E6E6);
-    this.setBgImage( theme.getImage("e23fc54d7e3d96acebbb9c736fe92ef25efa93f7_Luminaire Goutte orientle 1 2 3 4  (8) 3.jpg"));
+          this.getStyle().setBgImage(theme.getImage("e23fc54d7e3d96acebbb9c736fe92ef25efa93f7_Luminaire Goutte orientle 1 2 3 4  (8) 3.jpg"));
+  //  this.setBgImage( theme.getImage("e23fc54d7e3d96acebbb9c736fe92ef25efa93f7_Luminaire Goutte orientle 1 2 3 4  (8) 3.jpg"));
     } 
     }
-    private void showSplashAnimation() throws IOException {
-        
-             
-        Form splash = new Form(new LayeredLayout());
-        splash.setUIID("Splash");
-        
-        splash.getContentPane().setUIID("Container");
-        splash.getToolbar().setUIID("Container");
-        ScaleImageLabel iconBackground = new ScaleImageLabel(res.getImage("e23fc54d7e3d96acebbb9c736fe92ef25efa93f7_Luminaire Goutte orientle 1 2 3 4  (8) 3.jpg"));
-        iconBackground.setBackgroundType(Style.BACKGROUND_IMAGE_SCALED_FILL);
-        Container centerBackground = BorderLayout.center(iconBackground);
-        splash.add(centerBackground);
-        Label iconForeground = new Label(res.getImage("codenameone-icon-foreground.png"));
-        Container centerIcon = BorderLayout.centerAbsolute(iconForeground);
-        splash.add(centerIcon);
-        
-        splash.show();
-        callSerially(() -> {
-            ((BorderLayout)centerBackground.getLayout()).setCenterBehavior(CENTER_BEHAVIOR_CENTER_ABSOLUTE);
-            centerBackground.setShouldCalcPreferredSize(true);
-            centerBackground.animateLayoutAndWait(350);
-            
-            iconForeground.remove();
-            iconBackground.remove();
-            centerIcon.remove();
-            Container layers = LayeredLayout.encloseIn(
-                    new Label(iconBackground.getIcon(), "CenterIcon"), 
-                    new Label(iconForeground.getIcon(), "CenterIcon"));
-            Container boxy = BoxLayout.encloseY(layers);
-            Label placeholder = new Label();
-            placeholder.setShowEvenIfBlank(true);
-            Label kitchenSink = new Label("KitchenSink", "SplashTitle");
-            Component.setSameHeight(placeholder, kitchenSink);
-            Component.setSameWidth(placeholder, kitchenSink, boxy);
-            centerBackground.add(CENTER, boxy);
-            splash.revalidate();
-            callSerially(() -> {
-                placeholder.setText(" ");
-                boxy.add(placeholder);
-                boxy.setShouldCalcPreferredSize(true);
-                boxy.getParent().animateLayoutAndWait(400);
-                boxy.replaceAndWait(placeholder, kitchenSink, CommonTransitions.createFade(500));
-                
-                Label newPlaceholder = new Label(" ");
-                Label byCodenameOne = new Label("by Codename One", "SplashSubTitle");
-                Component.setSameHeight(newPlaceholder, byCodenameOne);
-                Component.setSameWidth(newPlaceholder, byCodenameOne);
-                boxy.add(newPlaceholder);
-                boxy.getParent().animateLayoutAndWait(400);
-                boxy.replaceAndWait(newPlaceholder, byCodenameOne, CommonTransitions.createFade(500));
-                
-                byCodenameOne.setY(splash.getHeight());                
-                kitchenSink.setY(splash.getHeight());
-                layers.setY(splash.getHeight());
-                boxy.setHeight(splash.getHeight());
-                
-                boxy.animateUnlayoutAndWait(450, 20);
-                splash.setTransitionOutAnimator(CommonTransitions.createEmpty());
-                
-                // create image masks for card effects
-                Image mask = res.getImage("card-full.png");
-                maskWidth = mask.getWidth();
-                maskHeight = mask.getHeight() / 4 * 3;
-                Image top = mask.subImage(0, 0, maskWidth, maskHeight, true);
-                Image bottom = mask.subImage(0, maskHeight, maskWidth, mask.getHeight() / 4, true);
-                imageMask = top.createMask();
-                
-                Image circleMaskImage = res.getImage("circle.png");
-                circleMask = circleMaskImage.createMask();
-                circleMaskWidth = circleMaskImage.getWidth();
-                circleMaskHeight = circleMaskImage.getHeight();
-                
-                colorBottoms = new Image[7];
-                colors = new int[colorBottoms.length];
-                Object bottomMask = bottom.createMask();
-                for(int iter = 0 ; iter < colorBottoms.length ; iter++) {
-                    colors[iter] = splash.getUIManager().getComponentStyle("Blank" + (iter + 1)).getBgColor();
-                    colorBottoms[iter] = Image.createImage(bottom.getWidth(), bottom.getHeight(), 0xff000000 | colors[iter]);
-                    colorBottoms[iter] = colorBottoms[iter].applyMask(bottomMask);
-                }
-                
-                
-            });
-        });
-
-    }
+   
     public void start() {
         if(current != null){
             current.show();
@@ -215,31 +123,51 @@ public class MyApplication {
         }); 
             
         SplashScreen sps;
-         try {
-             sps = new SplashScreen();
-             sps.show();
-         } catch (IOException ex) {
-         }
+        /*try {
+        sps = new SplashScreen();
+        sps.show();
+        } catch (IOException ex) {
+        }*/
+        
+       // LoginForm lf = new LoginForm();
+       // lf.getMain().show();
+       
+        HomeProduitsForm hpf = new HomeProduitsForm();
+        hpf.getF().show();
         
         // after splash
-        new java.util.Timer().schedule( 
+        /*new java.util.Timer().schedule(
         new java.util.TimerTask() {
-            @Override
-            public void run() {
-             
-                /* Client_Liste_Events h = new Client_Liste_Events();
-                h.getF().show();*/
-       /* Vendeur_Evenet ve = new Vendeur_Evenet();
-        ve.getFv().show();*/
-          Client_List_Promotions p = new Client_List_Promotions();
-       p.getF().show();
-       /*Contact co = new Contact();
-       co.Contact();*/
-            }
-        }, 
-        2000 
-);
+        @Override
+        public void run() {
         
+        /* Client_Liste_Events h = new Client_Liste_Events();
+        h.getF().show();*/
+        /* Vendeur_Evenet ve = new Vendeur_Evenet();
+        ve.getFv().show();*/
+        /*   Client_List_Promotions p = new Client_List_Promotions();
+        p.getF().show();*/
+        /*Contact co = new Contact();
+        co.Contact();*/
+      //  HomePage h = new HomePage();
+       // h.getHome().show();
+        /* HomeProduitsForm hp = new HomeProduitsForm();
+        hp.getF().show();*/
+        /* HomeStatsPanier hs = new HomeStatsPanier();
+        hs.getStatsForm().show();*/
+        /*
+        VendeurCommandesForm vcf;
+        try {
+        vcf = new VendeurCommandesForm();
+        vcf.getPsdTutorial().show();
+        } catch (IOException ex) {
+        }
+        
+    }
+},
+2000
+);
+*/   
     }
 
     public void stop() {

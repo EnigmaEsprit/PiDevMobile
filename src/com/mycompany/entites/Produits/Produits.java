@@ -20,10 +20,27 @@ public class Produits {
     private double prixProduit;
     private String imageProduit;
     private float newprix;
-    private int validateur;
+    private int validateur;  
+    private int quantiteProduitClient;
 
     public Produits() {
     }
+     public Produits(int idProduit, String nomProduit, int quantiteProduit, double prixProduit) {
+        this.idProduit = idProduit;
+        this.nomProduit = nomProduit;
+        this.quantiteProduit = quantiteProduit;
+        this.prixProduit = prixProduit;
+    }
+
+   
+
+    public Produits(int idProduit, String nomProduit, double prixProduit, int quantiteProduitClient) {
+        this.idProduit = idProduit;
+        this.nomProduit = nomProduit;
+        this.prixProduit = prixProduit;
+        this.quantiteProduitClient = quantiteProduitClient;
+    }
+    
 
     public String getImageProduit() {
         return imageProduit;
@@ -47,6 +64,14 @@ public class Produits {
 
     public void setValidateur(int validateur) {
         this.validateur = validateur;
+    }
+
+    public int getQuantiteProduitClient() {
+        return quantiteProduitClient;
+    }
+
+    public void setQuantiteProduitClient(int quantiteProduitClient) {
+        this.quantiteProduitClient = quantiteProduitClient;
     }
     
     
