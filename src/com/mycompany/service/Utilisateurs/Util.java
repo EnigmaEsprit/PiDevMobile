@@ -18,11 +18,9 @@ import com.mycompany.entites.Utilisateurs.User;
 public class Util {
     public static User connectedUser =User.getActifUser();
     public static Evenements event;
-<<<<<<< HEAD
-    public static String addip = "192.168.8.100";
-=======
-    public static String addip = "192.168.8.102";
->>>>>>> 05e1c67bc0642b8be995dde47f7c3067083e9511
+
+    public static String addip = "172.16.236.248";
+
      public static boolean numerique_Validation(String numerique){
        char[] s = numerique.toCharArray();
        boolean testnum = true;

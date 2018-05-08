@@ -32,16 +32,16 @@ import com.codename1.ui.table.Table;
 import com.codename1.ui.util.Resources;
 import com.mycompany.GUI.Decouverte.Contact;
 import com.mycompany.GUI.Promotions.Vendeur_List_Promotions;
-<<<<<<< HEAD
+
 import com.mycompany.GUI.utilisateurs.LoginForm;
 import com.mycompany.entites.Evenements.Evenements;
 import com.mycompany.entites.Utilisateurs.User;
 import com.mycompany.myapp.HomePage;
 import com.mycompany.myapp.ToolbarForm;
-=======
+
 import com.mycompany.entites.Evenements.Evenements;
 import com.mycompany.myapp.HomePage;
->>>>>>> 05e1c67bc0642b8be995dde47f7c3067083e9511
+
 import com.mycompany.service.Evenements.ServiceEvenements;
 import com.mycompany.service.Utilisateurs.Util;
 import java.io.IOException;
@@ -105,7 +105,7 @@ public class Vendeur_Liste_Events  {
          f.getStyle().setBackgroundType(Style.BACKGROUND_IMAGE_SCALED);
          
                   Toolbar tb = f.getToolbar();
-<<<<<<< HEAD
+
                   /*  tb.addMaterialCommandToSideMenu("Home",FontImage.MATERIAL_HOME,new ActionListener() {
                   @Override
                   public void actionPerformed(ActionEvent evt) {
@@ -148,7 +148,7 @@ public class Vendeur_Liste_Events  {
              
             tbf.Menu0(f); 
         }
-=======
+ 
                    tb.addMaterialCommandToSideMenu("Home",FontImage.MATERIAL_HOME,new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
@@ -178,7 +178,7 @@ public class Vendeur_Liste_Events  {
         h.Contact();
             }
         });
->>>>>>> 05e1c67bc0642b8be995dde47f7c3067083e9511
+ 
                tb = f.getToolbar();
                    tb.addCommandToRightBar("Back", null, new ActionListener() {
                        @Override
@@ -276,17 +276,17 @@ public class Vendeur_Liste_Events  {
                                 public void actionPerformed(ActionEvent evt) {
                                     
                                     
-<<<<<<< HEAD
+  
                                       LoginForm logForm = new LoginForm();
                                       Util.connectedUser=null;
                                       User.setActifUser(null);
                                       logForm.getMain().show();
-=======
+ 
                                      HomePage h = new HomePage();
                                      Util.connectedUser=null;
                                     h.getHome().show();
                                     
->>>>>>> 05e1c67bc0642b8be995dde47f7c3067083e9511
+ 
                                 }
                             });
            d.dispose();

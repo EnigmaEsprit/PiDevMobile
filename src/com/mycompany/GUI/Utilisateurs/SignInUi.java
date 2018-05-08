@@ -6,53 +6,17 @@
 package com.mycompany.GUI.utilisateurs;
 
 import Utilities.ToolsUtilities;
-import com.codename1.components.InfiniteProgress;
-//import com.codename1.demos.signin.UserForm;
-import com.codename1.facebook.FaceBookAccess;
-import com.codename1.io.AccessToken;
 import com.codename1.io.CharArrayReader;
-import com.codename1.io.ConnectionRequest;
 import com.codename1.io.JSONParser;
-import com.codename1.io.NetworkEvent;
-import com.codename1.io.NetworkManager;
-import com.codename1.io.Oauth2;
-import com.codename1.io.Storage;
-import com.codename1.social.FacebookConnect;
-import com.codename1.social.GoogleConnect;
 import com.codename1.social.Login;
-import com.codename1.social.LoginCallback;
-import com.codename1.ui.Button;
-import com.codename1.ui.Command;
-import com.codename1.ui.Component;
-import static com.codename1.ui.Component.LEFT;
-import static com.codename1.ui.Component.RIGHT;
-import com.codename1.ui.Container;
-import com.codename1.ui.Dialog;
-import com.codename1.ui.EncodedImage;
-import com.codename1.ui.FontImage;
 import com.codename1.ui.Form;
-import com.codename1.ui.Image;
-import com.codename1.ui.Label;
 import com.codename1.ui.TextField;
-import com.codename1.ui.URLImage;
-import com.codename1.ui.events.ActionEvent;
-import com.codename1.ui.events.ActionListener;
-import com.codename1.ui.layouts.BorderLayout;
-import com.codename1.ui.layouts.BoxLayout;
-import com.codename1.ui.layouts.FlowLayout;
-import com.codename1.ui.layouts.LayeredLayout;
-import com.codename1.ui.plaf.UIManager;
 import com.codename1.ui.util.Resources;
-import com.codename1.util.StringUtil;
 import com.mycompany.entites.Utilisateurs.User;
 
-import com.mycompany.myapp.MyApplication;
-import java.io.ByteArrayInputStream;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.text.ParseException;
 import java.util.Map;
-import org.mindrot.jbcrypt.BCrypt;
 
 /**
  *

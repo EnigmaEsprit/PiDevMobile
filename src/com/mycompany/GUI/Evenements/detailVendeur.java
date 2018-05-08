@@ -36,10 +36,10 @@ import com.mycompany.GUI.Utilisateurs.LogIn;
 import com.mycompany.GUI.utilisateurs.LoginForm;
 import com.mycompany.entites.Evenements.Evenements;
 import com.mycompany.entites.Participations.Participations;
-<<<<<<< HEAD
+  
 import com.mycompany.entites.Utilisateurs.User;
-=======
->>>>>>> 05e1c67bc0642b8be995dde47f7c3067083e9511
+  
+  
 import com.mycompany.myapp.HomePage;
 import com.mycompany.myapp.MyApplication;
 import com.mycompany.myapp.ToolbarForm;
@@ -49,7 +49,6 @@ import com.mycompany.service.Utilisateurs.Util;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Random;
-
 /**
  *
  * @author user
@@ -107,11 +106,11 @@ public class detailVendeur {
     
     public void detailVendeur(Evenements t)
     {
-<<<<<<< HEAD
+  
         System.out.println(t);
-=======
+  
         
->>>>>>> 05e1c67bc0642b8be995dde47f7c3067083e9511
+  
          try {
                         enc = EncodedImage.create("/giphy.gif");
                     } catch (IOException ex) {
@@ -122,7 +121,7 @@ public class detailVendeur {
           InfiniteProgress ip = new InfiniteProgress();
               Dialog d = ip.showInifiniteBlocking();
                               Toolbar tb = f2.getToolbar();
-<<<<<<< HEAD
+  
                               /* tb.addMaterialCommandToSideMenu("Home",FontImage.MATERIAL_HOME,new ActionListener() {
                               @Override
                               public void actionPerformed(ActionEvent evt) {
@@ -153,7 +152,7 @@ public class detailVendeur {
                               }
                               });
                               */
-=======
+  
                    tb.addMaterialCommandToSideMenu("Home",FontImage.MATERIAL_HOME,new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
@@ -184,7 +183,7 @@ public class detailVendeur {
             }
         });
               
->>>>>>> 05e1c67bc0642b8be995dde47f7c3067083e9511
+  
                                 f2.getToolbar().addCommandToOverflowMenu("Edite", null, new ActionListener() {
                                 @Override
                                 public void actionPerformed(ActionEvent evt) {
@@ -211,16 +210,16 @@ public class detailVendeur {
                                 public void actionPerformed(ActionEvent evt) {
                                     
                                     
-<<<<<<< HEAD
+  
                                      LoginForm logForm = new LoginForm();
                                       Util.connectedUser=null;
                                       User.setActifUser(null);
                                       logForm.getMain().show();
-=======
+  
                                      HomePage h = new HomePage();
                                      Util.connectedUser=null;
                                     h.getHome().show();
->>>>>>> 05e1c67bc0642b8be995dde47f7c3067083e9511
+  
                                 }
                             });
                                  ToolbarForm tbf = new ToolbarForm();

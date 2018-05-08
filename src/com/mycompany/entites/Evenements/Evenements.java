@@ -34,11 +34,12 @@ public class Evenements {
     public Evenements() {
     }
 
-<<<<<<< HEAD
+  
+   
+    
+  
     public Evenements(String nomevenement, int nombredeplaces, int nombredeplacerestante, float tarifevenement, String description, String lieu, Date date, Date datefin, User idUser, String image) {
-=======
-    public Evenements(String nomevenement, int nombredeplaces, int nombredeplacerestante, float tarifevenement, String description, String lieu, Date date, Date datefin, Users idUser, String image) {
->>>>>>> 05e1c67bc0642b8be995dde47f7c3067083e9511
+  
         this.nomevenement = nomevenement;
         this.nombredeplaces = nombredeplaces;
         this.nombredeplacerestante = nombredeplacerestante;
@@ -51,11 +52,11 @@ public class Evenements {
         this.image = image;
     }
 
-<<<<<<< HEAD
+  
+ 
+  
     public Evenements(int id, String nomevenement, int nombredeplaces, int nombredeplacerestante, float tarifevenement, String description, String lieu, String dateS, String datefS, User idUser, String image) {
-=======
-    public Evenements(int id, String nomevenement, int nombredeplaces, int nombredeplacerestante, float tarifevenement, String description, String lieu, String dateS, String datefS, Users idUser, String image) {
->>>>>>> 05e1c67bc0642b8be995dde47f7c3067083e9511
+  
         this.id = id;
         this.nomevenement = nomevenement;
         this.nombredeplaces = nombredeplaces;

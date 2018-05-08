@@ -39,10 +39,9 @@ import com.codename1.ui.plaf.Style;
 import com.codename1.ui.plaf.UIManager;
 import com.codename1.ui.table.Table;
 import com.codename1.ui.util.Resources;
-<<<<<<< HEAD
+
 import com.mycompany.GUI.Commentaires.PageCommentaire;
-=======
->>>>>>> 05e1c67bc0642b8be995dde47f7c3067083e9511
+
 import com.mycompany.GUI.Decouverte.Contact;
 import com.mycompany.GUI.Promotions.Client_List_Promotions;
 
@@ -50,14 +49,13 @@ import com.mycompany.GUI.Utilisateurs.LogIn;
 import com.mycompany.GUI.utilisateurs.LoginForm;
 import com.mycompany.entites.Evenements.Evenements;
 import com.mycompany.entites.Participations.Participations;
-<<<<<<< HEAD
 import com.mycompany.entites.Utilisateurs.User;
 import com.mycompany.myapp.HomePage;
 import com.mycompany.myapp.ToolbarForm;
 import com.mycompany.service.Commentaires.ServiceCommentaires;
-=======
+
 import com.mycompany.myapp.HomePage;
->>>>>>> 05e1c67bc0642b8be995dde47f7c3067083e9511
+
 import com.mycompany.service.Evenements.ServiceEvenements;
 import com.mycompany.service.Participations.ServiceParticipations;
 import com.mycompany.service.Utilisateurs.Util;
@@ -164,14 +162,14 @@ static String address = "The White House, Washington DC";
     
     public void detail(Evenements t) throws ParseException
     {
-<<<<<<< HEAD
+
         ServiceCommentaires.eventSelected = t; 
              
         f2=new Form("Detail");
-=======
+
          
              f2=new Form("Detail");
->>>>>>> 05e1c67bc0642b8be995dde47f7c3067083e9511
+
                 
   f2.getStyle().setBgColor(0xE6E6E6);
   InfiniteProgress ip = new InfiniteProgress();
@@ -194,7 +192,7 @@ static String address = "The White House, Washington DC";
                     }
    
                       Toolbar tb = f2.getToolbar();
-<<<<<<< HEAD
+
                       /*tb.addMaterialCommandToSideMenu("Home",FontImage.MATERIAL_HOME,new ActionListener() {
                       @Override
                       public void actionPerformed(ActionEvent evt) {
@@ -228,7 +226,7 @@ static String address = "The White House, Washington DC";
                       });
                       }*/
                 if(Util.connectedUser!= null)
-=======
+
                    tb.addMaterialCommandToSideMenu("Home",FontImage.MATERIAL_HOME,new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
@@ -262,14 +260,12 @@ static String address = "The White House, Washington DC";
         });
     }
                 else
->>>>>>> 05e1c67bc0642b8be995dde47f7c3067083e9511
                 {
                        f2.getToolbar().addCommandToOverflowMenu("LogOut", null, new ActionListener() {
                                 @Override
                                 public void actionPerformed(ActionEvent evt) {
                                     
-                                    
-<<<<<<< HEAD
+
                                       LoginForm logForm = new LoginForm();
                                       Util.connectedUser=null;
                                       User.setActifUser(null);
@@ -294,13 +290,9 @@ static String address = "The White House, Washington DC";
              
             tbf.Menu0(f2); 
         }
-=======
-                                    HomePage h = new HomePage();
-                                     Util.connectedUser=null;
-                                    h.getHome().show();
-                                }
-                            });
-                }
+
+                                 
+              
                 tb.addMaterialCommandToSideMenu("Contact",FontImage.MATERIAL_CONTACTS,new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
@@ -308,7 +300,7 @@ static String address = "The White House, Washington DC";
         h.Contact();
             }
         });
->>>>>>> 05e1c67bc0642b8be995dde47f7c3067083e9511
+
    
                    f2.getAllStyles().setPadding(0,0,0,0);
                       f2.setLayout(new BoxLayout(BoxLayout.Y_AXIS));
@@ -470,11 +462,10 @@ FlowLayout.encloseBottom(btnMoveCamera, btnAddMarker, btnAddPath, btnClearAll)
                   cn.getStyle().setBorder(Border.createLineBorder(2));
                  
                   f2.add(cn);
-<<<<<<< HEAD
+
                   PageCommentaire pc = new PageCommentaire();
                   pc.PageComentaire(f2);
-=======
->>>>>>> 05e1c67bc0642b8be995dde47f7c3067083e9511
+
                   d.dispose();
                   f2.show();
                   

@@ -2,7 +2,6 @@ package com.mycompany.myapp;
 
 
 import com.codename1.components.ImageViewer;
-import com.codename1.components.ScaleImageLabel;
 import static com.codename1.ui.CN.*;
 import com.codename1.ui.Form;
 import com.codename1.ui.Dialog;
@@ -12,24 +11,17 @@ import com.codename1.ui.util.Resources;
 import com.codename1.io.Log;
 import com.codename1.ui.Toolbar;
 import java.io.IOException;
-import com.codename1.ui.layouts.BoxLayout;
 import com.codename1.ui.Command;
 import com.codename1.ui.Component;
 import com.codename1.ui.Container;
 import com.codename1.ui.EncodedImage;
 import com.codename1.ui.FontImage;
 import com.codename1.ui.Image;
-import com.codename1.ui.animations.CommonTransitions;
 import com.codename1.ui.events.ActionEvent;
 import com.codename1.ui.events.ActionListener;
-import com.codename1.ui.layouts.BorderLayout;
 import com.codename1.ui.layouts.FlowLayout;
-import com.codename1.ui.layouts.LayeredLayout;
-import com.codename1.ui.plaf.Style;
 import com.mycompany.GUI.Evenements.Client_Liste_Events;
-import com.mycompany.GUI.Panier.VendeurCommandesForm;
 import com.mycompany.GUI.Produits.HomeProduitsForm;
-import com.mycompany.GUI.utilisateurs.LoginForm;
 
 
 
@@ -145,7 +137,7 @@ public class MyApplication {
         h.getF().show();*/
         /* Vendeur_Evenet ve = new Vendeur_Evenet();
         ve.getFv().show();*/
-<<<<<<< HEAD
+  
         /*   Client_List_Promotions p = new Client_List_Promotions();
         p.getF().show();*/
         /*Contact co = new Contact();
@@ -163,25 +155,17 @@ public class MyApplication {
         vcf.getPsdTutorial().show();
         } catch (IOException ex) {
         }
-=======
+  
        /*   Client_List_Promotions p = new Client_List_Promotions();
        p.getF().show();*/
        /*Contact co = new Contact();
        co.Contact();*/
-       HomePage h = new HomePage();
-       h.getHome().show();
-            }
-        }, 
-        2000 
-);
->>>>>>> 05e1c67bc0642b8be995dde47f7c3067083e9511
+
+      
+
         
     }
-},
-2000
-);
-*/   
-    }
+
 
     public void stop() {
         current = getCurrentForm();

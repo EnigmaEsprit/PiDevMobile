@@ -6,50 +6,33 @@
 package com.mycompany.GUI.Panier;
 
 
-import com.codename1.components.ImageViewer;
-import com.codename1.components.SpanLabel;
-import com.codename1.io.Log;
 import com.codename1.ui.Button;
-import com.codename1.ui.Command;
 import com.codename1.ui.Component;
 import com.codename1.ui.Container;
 import com.codename1.ui.Dialog;
-import com.codename1.ui.Display;
-import com.codename1.ui.Font;
 import com.codename1.ui.FontImage;
 import com.codename1.ui.Form;
 import com.codename1.ui.Image;
 import com.codename1.ui.Label;
-import com.codename1.ui.Slider;
-import com.codename1.ui.TextArea;
 import com.codename1.ui.TextField;
 import com.codename1.ui.Toolbar;
 import com.codename1.ui.events.ActionEvent;
 import com.codename1.ui.events.ActionListener;
-import com.codename1.ui.geom.Dimension;
 import com.codename1.ui.layouts.BorderLayout;
 import com.codename1.ui.layouts.BoxLayout;
-import com.codename1.ui.layouts.FlowLayout;
 import com.codename1.ui.layouts.LayeredLayout;
 import com.codename1.ui.plaf.Style;
 import com.codename1.ui.plaf.UIManager;
-import com.codename1.ui.table.DefaultTableModel;
-import com.codename1.ui.table.Table;
 import com.codename1.ui.table.TableLayout;
-import com.codename1.ui.table.TableModel;
 import com.codename1.ui.util.Resources;
 import com.mycompany.GUI.Produits.HomeProduitsForm;
 import com.mycompany.entites.Panier.FonctionPanier;
 import com.mycompany.entites.Panier.StripePayement;
-import com.mycompany.entites.Produits.Produits;
 import com.mycompany.entites.Utilisateurs.User;
 import com.mycompany.myapp.ToolbarForm;
 import com.mycompany.service.Panier.PanierService;
-import com.mycompany.service.Produits.ProduitsServices;
 import com.stripe.model.Charge;
 import com.stripe.model.Token;
-import java.io.IOException;
-import java.util.Iterator;
 
 /**
  *

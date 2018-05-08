@@ -31,16 +31,16 @@ import com.codename1.ui.plaf.Style;
 import com.codename1.ui.table.Table;
 import com.mycompany.GUI.Decouverte.Contact;
 import com.mycompany.GUI.Evenements.Vendeur_Liste_Events;
-<<<<<<< HEAD
+
 import com.mycompany.GUI.utilisateurs.LoginForm;
 import com.mycompany.entites.Promotions.Promotions;
 import com.mycompany.entites.Utilisateurs.User;
 import com.mycompany.myapp.HomePage;
 import com.mycompany.myapp.ToolbarForm;
-=======
+
 import com.mycompany.entites.Promotions.Promotions;
 import com.mycompany.myapp.HomePage;
->>>>>>> 05e1c67bc0642b8be995dde47f7c3067083e9511
+  
 import com.mycompany.service.Promotions.ServicePrommotion;
 import com.mycompany.service.Utilisateurs.Util;
 import java.io.IOException;
@@ -83,7 +83,7 @@ public class Vendeur_List_Promotions {
          f.getStyle().setBackgroundType(Style.BACKGROUND_IMAGE_SCALED);
          
                  Toolbar tb = f.getToolbar();
-<<<<<<< HEAD
+  
                  /* tb.addMaterialCommandToSideMenu("Home",FontImage.MATERIAL_HOME,new ActionListener() {
                  @Override
                  public void actionPerformed(ActionEvent evt) {
@@ -125,7 +125,7 @@ public class Vendeur_List_Promotions {
              
             tbf.Menu0(f); 
         }
-=======
+  
                    tb.addMaterialCommandToSideMenu("Home",FontImage.MATERIAL_HOME,new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
@@ -156,7 +156,7 @@ public class Vendeur_List_Promotions {
             }
         });
               
->>>>>>> 05e1c67bc0642b8be995dde47f7c3067083e9511
+  
    
         ServicePrommotion sc = new ServicePrommotion();
         
@@ -222,16 +222,14 @@ public class Vendeur_List_Promotions {
                                 public void actionPerformed(ActionEvent evt) {
                                     
                                     
-<<<<<<< HEAD
+  
                                          LoginForm logForm = new LoginForm();
                                       Util.connectedUser=null;
                                       User.setActifUser(null);
                                       logForm.getMain().show();
-=======
-                                      HomePage h = new HomePage();
-                                     Util.connectedUser=null;
-                                    h.getHome().show();
->>>>>>> 05e1c67bc0642b8be995dde47f7c3067083e9511
+  
+                                    
+  
                                     
                                 }
                             });
